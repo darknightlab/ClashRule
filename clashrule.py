@@ -50,6 +50,8 @@ def listen(port=80):
         provider = request.args.get("provider")
         if provider:
             client["proxy-providers-template"]["url"] = provider
+        else:
+            client["proxy-providers-template"]["url"] = ""
         yaml.dump(client, buf)
         return Response(buf.getvalue(), mimetype="text/plain")
 
