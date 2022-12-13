@@ -1,0 +1,11 @@
+version: "3"
+services:
+    clashrule:
+        image: darknightlab/ClashRule:main
+        # build: ./
+        container_name: clashrule
+        restart: always
+        network_mode: bridge
+        ports:
+            - 15703:80
+
