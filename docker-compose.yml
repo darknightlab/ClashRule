@@ -1,7 +1,7 @@
 version: "3"
 services:
     clashrule:
-        image: darknightlab/ClashRule:main
+        image: darknightlab/clashrule:main
         # build: ./
         container_name: clashrule
         restart: always
