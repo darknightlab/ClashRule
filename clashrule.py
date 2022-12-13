@@ -49,13 +49,22 @@ def listen(port=80):
     def index():
         resp = requests.get(
             githubraw+"/darknightlab/ClashRule/main/Config/ACL4SSR_Online_Full.yaml")
+
         config = yaml.load(resp.text)
         buf = io.BytesIO()
         provider = request.args.get("provider")
         if provider:
             config["proxy-providers-template"]["url"] = provider
+            su = ""
+            try:
+                su = requests.get(provider, headers={
+                    "user-agent": "ClashforWindows/0.19.29"
+                }).headers.get(
+                    "Subscription-Userinfo")
+            except:
+                pass
         yaml.dump(config, buf)
-        return Response(buf.getvalue(), mimetype="text/plain")
+        return Response(buf.getvalue(), mimetype="text/plain", headers={"Subscription-Userinfo": su})
 
     app.run(host="0.0.0.0", port=port)
 
@@ -71,3 +80,5 @@ if __name__ == "__main__":
             listen()
         elif sys.argv[1] == "generate":
             generate()
+    else:
+        listen(11111)
