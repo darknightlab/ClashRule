@@ -7,6 +7,7 @@ import requests
 yaml = ruamel.yaml.YAML()
 
 githubraw = "https://raw.lovely.ink"
+timeout = 10
 
 
 def merge(own: dict, default: dict):
@@ -48,23 +49,32 @@ def listen(port=80):
     @app.route("/")
     def index():
         resp = requests.get(
-            githubraw+"/darknightlab/ClashRule/main/Config/ACL4SSR_Online_Full.yaml")
+            githubraw+"/darknightlab/ClashRule/main/Config/ACL4SSR_Online_Full.yaml", timeout=timeout)
 
         config = yaml.load(resp.text)
         buf = io.BytesIO()
         provider = request.args.get("provider")
+        filename = request.args.get("filename")
         if provider:
             config["proxy-providers-template"]["url"] = provider
             su = ""
             try:
-                su = requests.get(provider, headers={
+                hd_in = requests.get(provider, headers={
                     "user-agent": "ClashforWindows/0.19.29"
-                }).headers.get(
-                    "Subscription-Userinfo")
+                }, timeout=timeout)
+                hd_out = {
+                    # "content-disposition": hd_in.headers.get("content-disposition"),
+                    # 文件名
+                    "content-disposition": "attachment; filename={}".format(filename),
+                    # 更新间隔
+                    "profile-update-interval": hd_in.headers.get("profile-update-interval"),
+                    # 流量信息
+                    "subscription-userinfo": hd_in.headers.get("subscription-userinfo")
+                }
             except:
                 pass
         yaml.dump(config, buf)
-        return Response(buf.getvalue(), mimetype="text/plain", headers={"Subscription-Userinfo": su})
+        return Response(buf.getvalue(), mimetype="text/plain", headers=hd_out)
 
     app.run(host="0.0.0.0", port=port)
 
@@ -80,5 +90,3 @@ if __name__ == "__main__":
             listen()
         elif sys.argv[1] == "generate":
             generate()
-    else:
-        listen(11111)
