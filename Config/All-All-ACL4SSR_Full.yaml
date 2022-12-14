@@ -5,6 +5,7 @@ allow-lan: true
 mode: Rule
 log-level: info
 external-controller: :9090
+ipv6: true
 proxy-providers-template: &proxy-providers-template
   type: http
     # your proxy provider url
