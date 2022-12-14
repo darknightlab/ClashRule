@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import ruamel.yaml
 import sys
+import os
 import requests
 
 
@@ -12,6 +13,8 @@ timeout = 10
 
 def merge(own: dict, default: dict):
     # 如果own有值, 则取own, 如果own没有值或值为空, 则取default
+    if not own:
+        own = default
     for key in default:
         if (key not in own) or not own[key]:
             own[key] = default[key]
@@ -20,23 +23,35 @@ def merge(own: dict, default: dict):
     return own
 
 
-def generate(url=""):
-    with open("./Config/client/client.yaml") as f:
-        client = yaml.load(f)
-    with open("./Config/proxy-providers/All.yaml") as f:
-        proxy_roviders = yaml.load(f)
-    with open("./Config/rule-providers/ACL4SSR.yaml") as f:
-        rule_providers = yaml.load(f)
-    with open("./Config/rule-groups/ACL4SSR_Full.yaml") as f:
-        rule_groups = yaml.load(f)
+def getYAML(dirname):
+    y = yaml.load(bytes("", "utf-8"))
+    files = [f for f in os.listdir(dirname) if (os.path.isfile(
+        os.path.join(dirname, f)) and f.endswith(".yaml"))]
+    for file in files:
+        with open(os.path.join(dirname, file)) as f:
+            proxy_provider = yaml.load(f)
+            y = merge(y, proxy_provider)
+    return y
 
-    config = client  # 指针引用
-    merge(config, proxy_roviders)
-    merge(config, rule_providers)
-    merge(config, rule_groups)
-    config["proxy-providers-template"]["url"] = url
-    with open("./Config/ACL4SSR_Online_Full.yaml", "w") as f:
-        yaml.dump(config, f)
+
+def generate(url=""):
+    files = [f for f in os.listdir("./Config/rule-groups") if (os.path.isfile(
+        os.path.join("./Config/rule-groups", f)) and f.endswith(".yaml"))]
+    for file in files:
+        with open("./Config/client/client.yaml") as f:
+            client = yaml.load(f)
+
+        proxy_roviders = getYAML("./Config/proxy-providers")
+        rule_providers = getYAML("./Config/rule-providers")
+        config = client  # 防止指针引用出乱子全部再读一遍
+        with open(os.path.join("./Config/rule-groups", file)) as f:
+            rule_groups = yaml.load(f)
+            merge(config, proxy_roviders)
+            merge(config, rule_providers)
+            merge(config, rule_groups)
+            config["proxy-providers-template"]["url"] = url
+            with open("./Config/All-All-{}.yaml".format(file.split(".")[0]), "w") as f:
+                yaml.dump(config, f)
 
 
 def listen(port=80):
@@ -48,12 +63,14 @@ def listen(port=80):
 
     @app.route("/")
     def index():
-        resp = requests.get(
-            githubraw+"/darknightlab/ClashRule/main/Config/ACL4SSR_Online_Full.yaml", timeout=timeout)
+        template = githubraw+"/darknightlab/ClashRule/main/Config/All-All-DNLAB_Full.yaml"
+        if request.args.get("template"):
+            template = request.args.get("template")
+        resp = requests.get(template, timeout=timeout)
 
         config = yaml.load(resp.text)
         buf = io.BytesIO()
-        provider = request.args.get("provider")
+        provider = request.args.get("provider")  # provider url
         filename = request.args.get("filename")
         if provider:
             config["proxy-providers-template"]["url"] = provider
@@ -90,3 +107,5 @@ if __name__ == "__main__":
             listen()
         elif sys.argv[1] == "generate":
             generate()
+    elif len(sys.argv) == 1:
+        generate()

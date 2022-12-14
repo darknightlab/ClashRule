@@ -1,0 +1,6 @@
+payload:
+    # 内容：dnlab国内网站
+    # 数量：3条
+    - DOMAIN,www.dnlab.net
+    - DOMAIN,login.partner.microsoftonline.cn
+    - DOMAIN-SUFFIX,sharepoint.cn

@@ -1,4 +1,4 @@
-# ACL4SSR_Full.yaml 完整的rule对应groups配置
+# DNLAB_Full.yaml 完整的rule对应groups配置
 proxy-groups:
     - name: 节点选择
       type: select
@@ -249,8 +249,10 @@ rules:
     - RULE-SET,Download,DIRECT
     - RULE-SET,LocalAreaNetwork,DIRECT
     # 学术
+    - RULE-SET,SitesOnlyInSchool,学术网站
     - RULE-SET,Scholar,学术网站
     # 其他
+    - RULE-SET,DnlabChina,DIRECT
     - RULE-SET,Adobe,节点选择
     - RULE-SET,Google,节点选择
     - RULE-SET,GoogleCN,DIRECT

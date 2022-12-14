@@ -1,0 +1,15 @@
+# raw.githubusercontent.com mirror: raw.lovely.ink
+# 自用的ACL4SSR补充规则
+rule-providers:
+    SitesOnlyInSchool:
+        type: http
+        behavior: classical
+        url: "https://raw.lovely.ink/darknightlab/ClashRule/main/Rule-Providers/SitesOnlyInSchool.yaml"
+        path: ./rule-providers/DNLAB/SitesOnlyInSchool.yaml
+        interval: 86400
+    DnlabChina:
+        type: http
+        behavior: classical
+        url: "https://raw.lovely.ink/darknightlab/ClashRule/main/Rule-Providers/DnlabChina.yaml"
+        path: ./rule-providers/DNLAB/DnlabChina.yaml
+        interval: 86400

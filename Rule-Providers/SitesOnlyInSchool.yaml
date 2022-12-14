@@ -1,0 +1,4 @@
+payload:
+    # 内容：仅在学校内可访问的网站
+    # 数量：1条
+    - DOMAIN-SUFFIX,tcep.pku.edu.cn

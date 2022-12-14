@@ -1,0 +1,697 @@
+mixed-port: 7890
+socks-port: 7891
+port: 7892
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: :9090
+proxy-providers-template: &proxy-providers-template
+  type: http
+    # your proxy provider url
+  url: ''
+  interval: 3600
+    # filter: # golang regex string
+  health-check:
+    enable: true
+    interval: 600
+    lazy: true
+    url: http://www.gstatic.com/generate_204
+
+proxy-providers:
+    # All; 所有
+  All:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+        # filter:
+
+    # Countries or Regions; 国家或地区
+    url:
+  HK:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|港|HK|Hong Kong
+    url:
+  JP:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan
+    url:
+  SG:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|新加坡|坡|狮城|SG|Singapore
+    url:
+  TW:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|台|新北|彰化|TW|Taiwan
+    url:
+  US:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States
+    url:
+  KR:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|KR|Korea|KOR|首尔|韩|韓
+
+    # Streaming Media; 流媒体
+    url:
+  Netflix:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|NF|奈飞|解锁|Netflix|NETFLIX|Media
+
+    # Scholar; 学术
+    url:
+  CERNET:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|PKU|THU|SJTU|USTC
+    url:
+rule-providers:
+  AbemaTV:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/AbemaTV.yaml
+    path: ./rule-providers/ACL4SSR/AbemaTV.yaml
+    interval: 86400
+
+  Adobe:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Adobe.yaml
+    path: ./rule-providers/ACL4SSR/Adobe.yaml
+    interval: 86400
+
+  Amazon:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Amazon.yaml
+    path: ./rule-providers/ACL4SSR/Amazon.yaml
+    interval: 86400
+
+  AmazonIp:
+    type: http
+    behavior: ipcidr
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/AmazonIp.yaml
+    path: ./rule-providers/ACL4SSR/AmazonIp.yaml
+    interval: 86400
+
+  Apple:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Apple.yaml
+    path: ./rule-providers/ACL4SSR/Apple.yaml
+    interval: 86400
+
+  Bahamut:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Bahamut.yaml
+    path: ./rule-providers/ACL4SSR/Bahamut.yaml
+    interval: 86400
+
+  Bilibili:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Bilibili.yaml
+    path: ./rule-providers/ACL4SSR/Bilibili.yaml
+    interval: 86400
+
+  BilibiliHMT:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/BilibiliHMT.yaml
+    path: ./rule-providers/ACL4SSR/BilibiliHMT.yaml
+    interval: 86400
+
+  Blizzard:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Blizzard.yaml
+    path: ./rule-providers/ACL4SSR/Blizzard.yaml
+    interval: 86400
+
+  Developer:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Developer.yaml
+    path: ./rule-providers/ACL4SSR/Developer.yaml
+    interval: 86400
+
+  DisneyPlus:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/DisneyPlus.yaml
+    path: ./rule-providers/ACL4SSR/DisneyPlus.yaml
+    interval: 86400
+
+  EHGallery:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/EHGallery.yaml
+    path: ./rule-providers/ACL4SSR/EHGallery.yaml
+    interval: 86400
+
+  Epic:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Epic.yaml
+    path: ./rule-providers/ACL4SSR/Epic.yaml
+    interval: 86400
+
+  Google:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Google.yaml
+    path: ./rule-providers/ACL4SSR/Google.yaml
+    interval: 86400
+
+  GoogleCN:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/GoogleCN.yaml
+    path: ./rule-providers/ACL4SSR/GoogleCN.yaml
+    interval: 86400
+
+  GoogleFCM:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/GoogleFCM.yaml
+    path: ./rule-providers/ACL4SSR/GoogleFCM.yaml
+    interval: 86400
+
+  HBO:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/HBO.yaml
+    path: ./rule-providers/ACL4SSR/HBO.yaml
+    interval: 86400
+
+  Microsoft:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Microsoft.yaml
+    path: ./rule-providers/ACL4SSR/Microsoft.yaml
+    interval: 86400
+
+  NetEaseMusic:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/NetEaseMusic.yaml
+    path: ./rule-providers/ACL4SSR/NetEaseMusic.yaml
+    interval: 86400
+
+  Netflix:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Netflix.yaml
+    path: ./rule-providers/ACL4SSR/Netflix.yaml
+    interval: 86400
+
+  OneDrive:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/OneDrive.yaml
+    path: ./rule-providers/ACL4SSR/OneDrive.yaml
+    interval: 86400
+
+  Porn:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Porn.yaml
+    path: ./rule-providers/ACL4SSR/Porn.yaml
+    interval: 86400
+
+  Scholar:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Scholar.yaml
+    path: ./rule-providers/ACL4SSR/Scholar.yaml
+    interval: 86400
+
+  Sony:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Sony.yaml
+    path: ./rule-providers/ACL4SSR/Sony.yaml
+    interval: 86400
+
+  Spotify:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Spotify.yaml
+    path: ./rule-providers/ACL4SSR/Spotify.yaml
+    interval: 86400
+
+  Steam:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Steam.yaml
+    path: ./rule-providers/ACL4SSR/Steam.yaml
+    interval: 86400
+
+  SteamCN:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/SteamCN.yaml
+    path: ./rule-providers/ACL4SSR/SteamCN.yaml
+    interval: 86400
+
+  Telegram:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Telegram.yaml
+    path: ./rule-providers/ACL4SSR/Telegram.yaml
+    interval: 86400
+
+  Xbox:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Xbox.yaml
+    path: ./rule-providers/ACL4SSR/Xbox.yaml
+    interval: 86400
+
+  YouTube:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/YouTube.yaml
+    path: ./rule-providers/ACL4SSR/YouTube.yaml
+    interval: 86400
+
+  BanAD:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml
+    path: ./rule-providers/ACL4SSR/BanAD.yaml
+    interval: 86400
+
+  BanEasyList:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/BanEasyList.yaml
+    path: ./rule-providers/ACL4SSR/BanEasyList.yaml
+    interval: 86400
+
+  BanEasyListChina:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/BanEasyListChina.yaml
+    path: ./rule-providers/ACL4SSR/BanEasyListChina.yaml
+    interval: 86400
+
+  BanEasyPrivacy:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/BanEasyPrivacy.yaml
+    path: ./rule-providers/ACL4SSR/BanEasyPrivacy.yaml
+    interval: 86400
+
+  BanProgramAD:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/BanProgramAD.yaml
+    path: ./rule-providers/ACL4SSR/BanProgramAD.yaml
+    interval: 86400
+
+  ChinaCompanyIp:
+    type: http
+    behavior: ipcidr
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaCompanyIp.yaml
+    path: ./rule-providers/ACL4SSR/ChinaCompanyIp.yaml
+    interval: 86400
+
+  ChinaDomain:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaDomain.yaml
+    path: ./rule-providers/ACL4SSR/ChinaDomain.yaml
+    interval: 86400
+
+  ChinaIp:
+    type: http
+    behavior: ipcidr
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaIp.yaml
+    path: ./rule-providers/ACL4SSR/ChinaIp.yaml
+    interval: 86400
+
+  ChinaMedia:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaMedia.yaml
+    path: ./rule-providers/ACL4SSR/ChinaMedia.yaml
+    interval: 86400
+
+  Download:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/Download.yaml
+    path: ./rule-providers/ACL4SSR/Download.yaml
+    interval: 86400
+
+  LocalAreaNetwork:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/LocalAreaNetwork.yaml
+    path: ./rule-providers/ACL4SSR/LocalAreaNetwork.yaml
+    interval: 86400
+
+  ProxyGFWlist:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml
+    path: ./rule-providers/ACL4SSR/ProxyGFWlist.yaml
+    interval: 86400
+
+  ProxyMedia:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyMedia.yaml
+    path: ./rule-providers/ACL4SSR/ProxyMedia.yaml
+    interval: 86400
+
+  UnBan:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/ACL4SSR/ACL4SSR/master/Clash/Providers/UnBan.yaml
+    path: ./rule-providers/ACL4SSR/UnBan.yaml
+    interval: 86400
+  SitesOnlyInSchool:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/darknightlab/ClashRule/main/Rule-Providers/SitesOnlyInSchool.yaml
+    path: ./rule-providers/DNLAB/SitesOnlyInSchool.yaml
+    interval: 86400
+  DnlabChina:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/darknightlab/ClashRule/main/Rule-Providers/DnlabChina.yaml
+    path: ./rule-providers/DNLAB/DnlabChina.yaml
+    interval: 86400
+proxy-groups:
+- name: 节点选择
+  type: select
+  proxies:
+  - 自动选择
+  - 手动切换
+  - 香港节点
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 美国节点
+  - 韩国节点
+  - DIRECT
+- name: 手动切换
+  type: select
+  use:
+  - All
+- name: 自动选择
+  type: url-test
+  use:
+  - All
+  url: http://www.gstatic.com/generate_204
+  interval: 300
+    # 内容分类, 规则集映射到此
+- name: 学术网站
+  type: select
+  proxies:
+  - DIRECT
+  - 学术节点
+  - 节点选择
+  - 自动选择
+  - 手动切换
+- name: 电报消息
+  type: select
+  proxies:
+  - 节点选择
+  - 自动选择
+  - 手动切换
+  - 香港节点
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 美国节点
+  - 韩国节点
+  - DIRECT
+- name: 油管视频
+  type: select
+  proxies:
+  - 节点选择
+  - 自动选择
+  - 手动切换
+  - 香港节点
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 美国节点
+  - 韩国节点
+  - DIRECT
+- name: 奈飞视频
+  type: select
+  proxies:
+  - 解锁节点
+  - 节点选择
+  - 自动选择
+  - 手动切换
+  - 香港节点
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 美国节点
+  - 韩国节点
+  - DIRECT
+- name: 巴哈姆特
+  type: select
+  proxies:
+  - 台湾节点
+  - 节点选择
+  - 自动选择
+  - 手动切换
+  - DIRECT
+- name: 哔哩哔哩
+  type: select
+  proxies:
+  - 全球直连
+  - 台湾节点
+  - 香港节点
+- name: 国外媒体
+  type: select
+  proxies:
+  - 解锁节点
+  - 节点选择
+  - 自动选择
+  - 手动切换
+  - 香港节点
+  - 日本节点
+  - 新加坡节点
+  - 台湾节点
+  - 美国节点
+  - 韩国节点
+  - DIRECT
+- name: 国内媒体
+  type: select
+  proxies:
+  - DIRECT
+  - 手动切换
+  - 香港节点
+  - 台湾节点
+  - 日本节点
+  - 新加坡节点
+- name: 谷歌FCM
+  type: select
+  proxies:
+  - DIRECT
+  - 节点选择
+  - 手动切换
+  - 香港节点
+  - 台湾节点
+  - 日本节点
+  - 新加坡节点
+  - 美国节点
+  - 韩国节点
+- name: 微软云盘
+  type: select
+  proxies:
+  - DIRECT
+  - 节点选择
+  - 手动切换
+  - 香港节点
+  - 台湾节点
+  - 日本节点
+  - 新加坡节点
+  - 美国节点
+  - 韩国节点
+- name: 微软服务
+  type: select
+  proxies:
+  - DIRECT
+  - 节点选择
+  - 手动切换
+  - 香港节点
+  - 台湾节点
+  - 日本节点
+  - 新加坡节点
+  - 美国节点
+  - 韩国节点
+- name: 苹果服务
+  type: select
+  proxies:
+  - DIRECT
+  - 节点选择
+  - 手动切换
+  - 香港节点
+  - 台湾节点
+  - 日本节点
+  - 新加坡节点
+  - 美国节点
+  - 韩国节点
+- name: 游戏平台
+  type: select
+  proxies:
+  - DIRECT
+  - 节点选择
+  - 手动切换
+  - 香港节点
+  - 台湾节点
+  - 日本节点
+  - 新加坡节点
+  - 美国节点
+  - 韩国节点
+- name: 网易云音乐
+      # 不知道怎么实现ACL4SSR的自动选择`(网易|音乐|解锁|Music|NetEase), 应该是要新建一个music providers
+  type: select
+  proxies:
+  - DIRECT
+  - 节点选择
+  - 手动切换
+  - 香港节点
+  - 台湾节点
+  - 日本节点
+  - 新加坡节点
+  - 美国节点
+  - 韩国节点
+- name: 全球直连
+  type: select
+  proxies:
+  - DIRECT
+  - 节点选择
+  - 自动选择
+  - 手动切换
+- name: 广告拦截
+  type: select
+  proxies:
+  - DIRECT
+  - REJECT
+- name: 应用净化
+  type: select
+  proxies:
+  - DIRECT
+  - REJECT
+- name: 漏网之鱼
+  type: select
+  proxies:
+  - DIRECT
+  - 节点选择
+  - 自动选择
+  - 手动切换
+
+    # 国家与地区分类, proxy-providers映射到此
+- name: 香港节点
+  type: select
+  use:
+  - HK
+- name: 日本节点
+  type: select
+  use:
+  - JP
+- name: 新加坡节点
+  type: select
+  use:
+  - SG
+- name: 台湾节点
+  type: select
+  use:
+  - TW
+- name: 美国节点
+  type: select
+  use:
+  - US
+- name: 韩国节点
+  type: select
+  use:
+  - KR
+
+    # 流媒体与学术等其他分类, proxy-providers映射到此
+- name: 解锁节点
+  type: select
+  use:
+  - Netflix
+- name: 学术节点
+  type: select
+  use:
+  - CERNET
+
+rules:
+    # 白名单
+- RULE-SET,UnBan,DIRECT
+    # 本地
+- RULE-SET,Download,DIRECT
+- RULE-SET,LocalAreaNetwork,DIRECT
+    # 学术
+- RULE-SET,SitesOnlyInSchool,学术网站
+- RULE-SET,Scholar,学术网站
+    # 其他
+- RULE-SET,DnlabChina,DIRECT
+- RULE-SET,Adobe,节点选择
+- RULE-SET,Google,节点选择
+- RULE-SET,GoogleCN,DIRECT
+- RULE-SET,GoogleFCM,谷歌FCM
+- RULE-SET,Microsoft,微软服务
+- RULE-SET,OneDrive,微软云盘
+- RULE-SET,Telegram,电报消息
+    # 游戏
+- RULE-SET,Bahamut,巴哈姆特
+- RULE-SET,Blizzard,DIRECT
+- RULE-SET,Epic,游戏平台
+- RULE-SET,Steam,游戏平台
+- RULE-SET,SteamCN,DIRECT
+- RULE-SET,Xbox,游戏平台
+    # 媒体
+- RULE-SET,NetEaseMusic,网易云音乐
+- RULE-SET,Bilibili,哔哩哔哩
+      # bilibili港澳台暂时也用哔哩哔哩
+- RULE-SET,BilibiliHMT,哔哩哔哩
+- RULE-SET,Netflix,奈飞视频
+- RULE-SET,AbemaTV,国外媒体
+- RULE-SET,DisneyPlus,国外媒体
+- RULE-SET,HBO,国外媒体
+- RULE-SET,Sony,国外媒体
+- RULE-SET,Spotify,国外媒体
+- RULE-SET,YouTube,油管视频
+- RULE-SET,ChinaMedia,国内媒体
+- RULE-SET,ProxyMedia,国外媒体
+    # 购物
+- RULE-SET,Amazon,节点选择
+- RULE-SET,AmazonIp,节点选择
+- RULE-SET,Apple,苹果服务
+    # 开发
+- RULE-SET,Developer,节点选择
+    # 18
+- RULE-SET,EHGallery,节点选择
+- RULE-SET,Porn,节点选择
+    # 国内
+- RULE-SET,ChinaCompanyIp,DIRECT
+- RULE-SET,ChinaDomain,DIRECT
+- RULE-SET,ChinaIp,DIRECT
+    # GFW
+- RULE-SET,ProxyGFWlist,节点选择
+    # 广告
+- RULE-SET,BanAD,广告拦截
+- RULE-SET,BanEasyList,广告拦截
+- RULE-SET,BanEasyListChina,广告拦截
+- RULE-SET,BanEasyPrivacy,广告拦截
+- RULE-SET,BanProgramAD,广告拦截
+    # 必须
+- MATCH,漏网之鱼
