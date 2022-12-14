@@ -12,9 +12,6 @@ timeout = 10
 
 
 def merge(own: dict, default: dict):
-    # 如果own有值, 则取own, 如果own没有值或值为空, 则取default
-    if not own:
-        own = default
     for key in default:
         if (key not in own) or not own[key]:
             own[key] = default[key]
@@ -24,13 +21,14 @@ def merge(own: dict, default: dict):
 
 
 def getYAML(dirname):
-    y = yaml.load(bytes("", "utf-8"))
+    # y是一个新的orderdict
+    y = yaml.load("{}")
     files = [f for f in os.listdir(dirname) if (os.path.isfile(
         os.path.join(dirname, f)) and f.endswith(".yaml"))]
     for file in files:
         with open(os.path.join(dirname, file)) as f:
             proxy_provider = yaml.load(f)
-            y = merge(y, proxy_provider)
+            merge(y, proxy_provider)
     return y
 
 

@@ -25,51 +25,42 @@ proxy-providers:
         # filter:
 
     # Countries or Regions; 国家或地区
-    url:
   HK:
     <<: *proxy-providers-template
     path: ./proxy-providers/All.yaml
     filter: None|港|HK|Hong Kong
-    url:
   JP:
     <<: *proxy-providers-template
     path: ./proxy-providers/All.yaml
     filter: None|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan
-    url:
   SG:
     <<: *proxy-providers-template
     path: ./proxy-providers/All.yaml
     filter: None|新加坡|坡|狮城|SG|Singapore
-    url:
   TW:
     <<: *proxy-providers-template
     path: ./proxy-providers/All.yaml
     filter: None|台|新北|彰化|TW|Taiwan
-    url:
   US:
     <<: *proxy-providers-template
     path: ./proxy-providers/All.yaml
     filter: None|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States
-    url:
   KR:
     <<: *proxy-providers-template
     path: ./proxy-providers/All.yaml
     filter: None|KR|Korea|KOR|首尔|韩|韓
 
     # Streaming Media; 流媒体
-    url:
   Netflix:
     <<: *proxy-providers-template
     path: ./proxy-providers/All.yaml
     filter: None|NF|奈飞|解锁|Netflix|NETFLIX|Media
 
     # Scholar; 学术
-    url:
   CERNET:
     <<: *proxy-providers-template
     path: ./proxy-providers/All.yaml
     filter: None|PKU|THU|SJTU|USTC
-    url:
 rule-providers:
   AbemaTV:
     type: http
