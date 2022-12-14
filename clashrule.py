@@ -9,7 +9,7 @@ import urllib.parse
 yaml = ruamel.yaml.YAML()
 
 githubraw = "https://raw.lovely.ink"
-subconverter = "https://sub.darknight.tech"
+subconverter_default = "https://sub.darknight.tech"
 timeout = 10
 
 
@@ -76,14 +76,16 @@ def listen(port=80):
         subconverter_url = request.args.get("subconverter")
         provider = request.args.get("provider")  # provider url
         filename = request.args.get("filename")
+        # 设置subconverter地址
         if subconverter_url:
-            subconverter = subconverter_url
+            subc = subconverter_url
+        else:
+            subc = subconverter_default
         if provider:
             pass
         elif subscription_url:
-            provider = subconverter + \
-                "/sub?target=clash&list=true&url={}".format(
-                    urllib.parse.quote_plus(subscription_url))
+            provider = subc + "/sub?target=clash&list=true&url={}".format(
+                urllib.parse.quote_plus(subscription_url))
         config["proxy-providers-template"]["url"] = provider
         try:
             hd_in = requests.get(provider, headers={
@@ -91,13 +93,14 @@ def listen(port=80):
             }, timeout=timeout)
             hd_out = {
                 # "content-disposition": hd_in.headers.get("content-disposition"),
-                # 文件名
-                "content-disposition": "attachment; filename={}".format(filename),
                 # 更新间隔
                 "profile-update-interval": hd_in.headers.get("profile-update-interval"),
                 # 流量信息
                 "subscription-userinfo": hd_in.headers.get("subscription-userinfo")
             }
+            if filename:
+                hd_out["content-disposition"] = "attachment; filename={}".format(
+                    filename)
         except:
             pass
         yaml.dump(config, buf)
