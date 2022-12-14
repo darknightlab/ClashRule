@@ -3,11 +3,13 @@ import ruamel.yaml
 import sys
 import os
 import requests
+import urllib.parse
 
 
 yaml = ruamel.yaml.YAML()
 
 githubraw = "https://raw.lovely.ink"
+subconverter = "https://sub.darknight.tech"
 timeout = 10
 
 
@@ -64,30 +66,40 @@ def listen(port=80):
         template = githubraw+"/darknightlab/ClashRule/main/Config/All-All-DNLAB_Full.yaml"
         if request.args.get("template"):
             template = request.args.get("template")
+            if not template.startswith("http"):
+                template = githubraw+"/darknightlab/ClashRule/main/Config/"+template
         resp = requests.get(template, timeout=timeout)
 
         config = yaml.load(resp.text)
         buf = io.BytesIO()
+        subscription_url = request.args.get("subscription")
+        subconverter_url = request.args.get("subconverter")
         provider = request.args.get("provider")  # provider url
         filename = request.args.get("filename")
+        if subconverter_url:
+            subconverter = subconverter_url
         if provider:
-            config["proxy-providers-template"]["url"] = provider
-            su = ""
-            try:
-                hd_in = requests.get(provider, headers={
-                    "user-agent": "ClashforWindows/0.19.29"
-                }, timeout=timeout)
-                hd_out = {
-                    # "content-disposition": hd_in.headers.get("content-disposition"),
-                    # 文件名
-                    "content-disposition": "attachment; filename={}".format(filename),
-                    # 更新间隔
-                    "profile-update-interval": hd_in.headers.get("profile-update-interval"),
-                    # 流量信息
-                    "subscription-userinfo": hd_in.headers.get("subscription-userinfo")
-                }
-            except:
-                pass
+            pass
+        elif subscription_url:
+            provider = subconverter + \
+                "/sub?target=clash&list=true&url={}".format(
+                    urllib.parse.quote_plus(subscription_url))
+        config["proxy-providers-template"]["url"] = provider
+        try:
+            hd_in = requests.get(provider, headers={
+                "user-agent": "ClashforWindows/0.19.29"
+            }, timeout=timeout)
+            hd_out = {
+                # "content-disposition": hd_in.headers.get("content-disposition"),
+                # 文件名
+                "content-disposition": "attachment; filename={}".format(filename),
+                # 更新间隔
+                "profile-update-interval": hd_in.headers.get("profile-update-interval"),
+                # 流量信息
+                "subscription-userinfo": hd_in.headers.get("subscription-userinfo")
+            }
+        except:
+            pass
         yaml.dump(config, buf)
         return Response(buf.getvalue(), mimetype="text/plain", headers=hd_out)
 
