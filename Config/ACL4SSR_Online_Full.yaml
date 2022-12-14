@@ -618,39 +618,15 @@ proxy-groups:
 rules:
     # 白名单
 - RULE-SET,UnBan,DIRECT
+    # 本地
+- RULE-SET,Download,DIRECT
+- RULE-SET,LocalAreaNetwork,DIRECT
     # 学术
 - RULE-SET,Scholar,学术网站
-    # 广告
-- RULE-SET,BanAD,广告拦截
-- RULE-SET,BanEasyList,广告拦截
-- RULE-SET,BanEasyListChina,广告拦截
-- RULE-SET,BanEasyPrivacy,广告拦截
-- RULE-SET,BanProgramAD,广告拦截
     # 国内
 - RULE-SET,ChinaCompanyIp,DIRECT
 - RULE-SET,ChinaDomain,DIRECT
 - RULE-SET,ChinaIp,DIRECT
-    # 本地
-- RULE-SET,Download,DIRECT
-- RULE-SET,LocalAreaNetwork,DIRECT
-    # 媒体
-- RULE-SET,ChinaMedia,国内媒体
-- RULE-SET,ProxyMedia,国外媒体
-- RULE-SET,AbemaTV,国外媒体
-- RULE-SET,Bilibili,哔哩哔哩
-      # bilibili港澳台暂时也用哔哩哔哩
-- RULE-SET,BilibiliHMT,哔哩哔哩
-- RULE-SET,DisneyPlus,国外媒体
-- RULE-SET,HBO,国外媒体
-- RULE-SET,NetEaseMusic,网易云音乐
-- RULE-SET,Netflix,奈飞视频
-- RULE-SET,Sony,国外媒体
-- RULE-SET,Spotify,国外媒体
-- RULE-SET,YouTube,油管视频
-    # 购物
-- RULE-SET,Amazon,节点选择
-- RULE-SET,AmazonIp,节点选择
-- RULE-SET,Apple,苹果服务
     # 游戏
 - RULE-SET,Bahamut,巴哈姆特
 - RULE-SET,Blizzard,DIRECT
@@ -658,11 +634,26 @@ rules:
 - RULE-SET,Steam,游戏平台
 - RULE-SET,SteamCN,DIRECT
 - RULE-SET,Xbox,游戏平台
+    # 媒体
+- RULE-SET,NetEaseMusic,网易云音乐
+- RULE-SET,Bilibili,哔哩哔哩
+      # bilibili港澳台暂时也用哔哩哔哩
+- RULE-SET,BilibiliHMT,哔哩哔哩
+- RULE-SET,Netflix,奈飞视频
+- RULE-SET,AbemaTV,国外媒体
+- RULE-SET,DisneyPlus,国外媒体
+- RULE-SET,HBO,国外媒体
+- RULE-SET,Sony,国外媒体
+- RULE-SET,Spotify,国外媒体
+- RULE-SET,YouTube,油管视频
+- RULE-SET,ChinaMedia,国内媒体
+- RULE-SET,ProxyMedia,国外媒体
+    # 购物
+- RULE-SET,Amazon,节点选择
+- RULE-SET,AmazonIp,节点选择
+- RULE-SET,Apple,苹果服务
     # 开发
 - RULE-SET,Developer,节点选择
-    # 18
-- RULE-SET,EHGallery,节点选择
-- RULE-SET,Porn,节点选择
     # 其他
 - RULE-SET,Adobe,节点选择
 - RULE-SET,Google,节点选择
@@ -671,7 +662,16 @@ rules:
 - RULE-SET,Microsoft,微软服务
 - RULE-SET,OneDrive,微软云盘
 - RULE-SET,Telegram,电报消息
+    # 18
+- RULE-SET,EHGallery,节点选择
+- RULE-SET,Porn,节点选择
     # GFW
 - RULE-SET,ProxyGFWlist,节点选择
+    # 广告
+- RULE-SET,BanAD,广告拦截
+- RULE-SET,BanEasyList,广告拦截
+- RULE-SET,BanEasyListChina,广告拦截
+- RULE-SET,BanEasyPrivacy,广告拦截
+- RULE-SET,BanProgramAD,广告拦截
     # 必须
 - MATCH,漏网之鱼
