@@ -3,6 +3,7 @@ payload:
     # 数量：5条
     - DOMAIN,www.dnlab.net
     - DOMAIN,pve.dnlab.net
+    - DOMAIN,index.dnlab.net
     - DOMAIN-SUFFIX,home.dnlab.net
     - DOMAIN,login.partner.microsoftonline.cn
     - DOMAIN-SUFFIX,sharepoint.cn
