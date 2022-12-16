@@ -206,29 +206,29 @@ proxy-groups:
           - 自动选择
           - 手动切换
 
-    # 国家与地区分类, proxy-providers映射到此
+    # 国家与地区分类, proxy-providers映射到此, 采用url-test, 这个分类上大概自动选择比较好
     - name: 香港节点
-      type: select
+      type: url-test
       use:
           - HK
     - name: 日本节点
-      type: select
+      type: url-test
       use:
           - JP
     - name: 新加坡节点
-      type: select
+      type: url-test
       use:
           - SG
     - name: 台湾节点
-      type: select
+      type: url-test
       use:
           - TW
     - name: 美国节点
-      type: select
+      type: url-test
       use:
           - US
     - name: 韩国节点
-      type: select
+      type: url-test
       use:
           - KR
 
