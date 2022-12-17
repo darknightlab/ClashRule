@@ -63,46 +63,61 @@ def listen(port=80):
 
     @app.route("/")
     def index():
-        template = githubraw+"/darknightlab/ClashRule/main/Config/All-All-DNLAB_Full.yaml"
-        if request.args.get("template"):
-            template = request.args.get("template")
-            if not template.startswith("http"):
-                template = githubraw+"/darknightlab/ClashRule/main/Config/"+template
-        resp = requests.get(template, timeout=timeout)
-
-        config = yaml.load(resp.text)
-        buf = io.BytesIO()
         subscription_url = request.args.get("subscription")
         subconverter_url = request.args.get("subconverter")
-        provider = request.args.get("provider")  # provider url
+        provider_url = request.args.get("provider")  # provider url
         filename = request.args.get("filename")
+
         # 设置subconverter地址
         if subconverter_url:
             subc = subconverter_url
         else:
             subc = subconverter_default
-        if provider:
+
+        # 设置provider地址
+        if provider_url:
             pass
         elif subscription_url:
-            provider = subc + "/sub?target=clash&list=true&url={}".format(
+            provider_url = subc + "/sub?target=clash&list=true&url={}".format(
                 urllib.parse.quote_plus(subscription_url))
-        config["proxy-providers-template"]["url"] = provider
+        else:
+            # 此时provider=None, 啥信息都没提供, return一个订阅转换的html页面.
+            return app.send_static_file("index.html")
+
+        # 此后provider_url必有值
+        # 设置template地址
+        template = githubraw+"/darknightlab/ClashRule/main/Config/All-All-DNLAB_Full.yaml"
+        if request.args.get("template"):
+            template = request.args.get("template")
+            if not template.startswith("http"):
+                template = githubraw+"/darknightlab/ClashRule/main/Config/"+template
+
+        resp = requests.get(template, timeout=timeout)
+        config = yaml.load(resp.text)
+        config["proxy-providers-template"]["url"] = provider_url
+
+        hd_out = {}
+        if filename:
+            hd_out["content-disposition"] = "attachment; filename={}".format(
+                filename)
+
+        # 尝试获取订阅信息并返回
         try:
-            hd_in = requests.get(provider, headers={
+            hd_in = requests.get(provider_url, headers={
                 "user-agent": "ClashforWindows/0.19.29"
             }, timeout=timeout)
-            hd_out = {
-                # "content-disposition": hd_in.headers.get("content-disposition"),
-                # 更新间隔
-                "profile-update-interval": hd_in.headers.get("profile-update-interval"),
-                # 流量信息
-                "subscription-userinfo": hd_in.headers.get("subscription-userinfo")
-            }
-            if filename:
-                hd_out["content-disposition"] = "attachment; filename={}".format(
-                    filename)
+            # 文件名
+            # hd_out["content-disposition"] = hd_in.headers.get("content-disposition")
+            # 更新间隔
+            hd_out["profile-update-interval"] = hd_in.headers.get(
+                "profile-update-interval")
+            # 流量信息
+            hd_out["subscription-userinfo"] = hd_in.headers.get(
+                "subscription-userinfo")
         except:
             pass
+
+        buf = io.BytesIO()
         yaml.dump(config, buf)
         return Response(buf.getvalue(), mimetype="text/plain", headers=hd_out)
 
