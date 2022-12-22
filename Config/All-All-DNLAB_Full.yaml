@@ -383,6 +383,12 @@ rule-providers:
     url: https://raw.lovely.ink/darknightlab/ClashRule/main/Rule-Providers/DnlabChina.yaml
     path: ./rule-providers/DNLAB/DnlabChina.yaml
     interval: 86400
+  RequestLimit:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/darknightlab/ClashRule/main/Rule-Providers/RequestLimit.yaml
+    path: ./rule-providers/DNLAB/RequestLimit.yaml
+    interval: 86400
 proxy-groups:
 - name: 节点选择
   type: select
@@ -406,6 +412,11 @@ proxy-groups:
   - All
   url: http://www.gstatic.com/generate_204
   interval: 300
+- name: 负载均衡
+  type: load-balance
+  use:
+  - All
+
     # 内容分类, 规则集映射到此
 - name: 学术网站
   type: select
@@ -637,6 +648,7 @@ rules:
 - RULE-SET,Scholar,学术网站
     # 其他
 - RULE-SET,DnlabChina,DIRECT
+- RULE-SET,RequestLimit,负载均衡
 - RULE-SET,Adobe,节点选择
 - RULE-SET,Google,节点选择
 - RULE-SET,GoogleCN,DIRECT

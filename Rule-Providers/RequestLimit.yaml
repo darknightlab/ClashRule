@@ -1,0 +1,4 @@
+payload:
+    # 内容：请求有单ip数量限制的网站
+    # 数量：1条
+    - DOMAIN-SUFFIX,openai.com
