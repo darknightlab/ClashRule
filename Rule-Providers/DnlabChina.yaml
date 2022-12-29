@@ -1,9 +1,10 @@
 payload:
-    # 内容：dnlab国内网站
-    # 数量：5条
+    # 内容：dnlab维护的国内网站列表
+    # 数量：7条
     - DOMAIN,www.dnlab.net
     - DOMAIN,pve.dnlab.net
     - DOMAIN,index.dnlab.net
     - DOMAIN-SUFFIX,home.dnlab.net
     - DOMAIN,login.partner.microsoftonline.cn
     - DOMAIN-SUFFIX,sharepoint.cn
+    - DOMAIN-SUFFIX,weixinbridge.com
