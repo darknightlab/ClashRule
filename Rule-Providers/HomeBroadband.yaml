@@ -1,0 +1,4 @@
+payload:
+    # 内容：需要家宽的网站
+    # 数量：1条
+    - DOMAIN-SUFFIX,chat.openai.com

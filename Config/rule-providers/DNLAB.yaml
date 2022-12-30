@@ -13,6 +13,12 @@ rule-providers:
         url: "https://raw.lovely.ink/darknightlab/ClashRule/main/Rule-Providers/DnlabChina.yaml"
         path: ./rule-providers/DNLAB/DnlabChina.yaml
         interval: 86400
+    HomeBroadband:
+        type: http
+        behavior: classical
+        url: "https://raw.lovely.ink/darknightlab/ClashRule/main/Rule-Providers/HomeBroadband.yaml"
+        path: ./rule-providers/DNLAB/HomeBroadband.yaml
+        interval: 86400
     RequestLimit:
         type: http
         behavior: classical
