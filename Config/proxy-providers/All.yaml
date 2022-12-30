@@ -7,7 +7,7 @@ proxy-providers-template: &proxy-providers-template
     # filter: # golang regex string
     health-check:
         enable: true
-        interval: 600
+        interval: 1800
         lazy: false
         url: http://www.gstatic.com/generate_204
 
