@@ -1,6 +1,7 @@
 payload:
     # 内容：仅在学校内可访问的网站
-    # 数量：2条
+    # 数量：4条
     - DOMAIN-SUFFIX,tcep.pku.edu.cn
     - DOMAIN-SUFFIX,byr.pt
     - DOMAIN,pku.dnlab.net
+    - DOMAIN,changelog.archive.blog
