@@ -639,8 +639,7 @@ proxy-groups:
   use:
   - Netflix
 - name: 学术节点
-      # 能用的多起来之后再改成select
-  type: url-test
+  type: select
   use:
   - CERNET
 
