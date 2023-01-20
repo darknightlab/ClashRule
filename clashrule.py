@@ -5,8 +5,9 @@ import os
 import requests
 import urllib.parse
 
-
-yaml = ruamel.yaml.YAML()
+# 运行一段时间后出错, 会与多线程有关吗? https://sourceforge.net/p/ruamel-yaml/tickets/367/
+# 注释掉下方这行, 在每一个用到yaml的地方新开一个, 或许可以解决问题
+# yaml = ruamel.yaml.YAML()
 
 githubraw = "https://raw.lovely.ink"
 subconverter_default = "https://subconverter.kawaii.id"
@@ -23,6 +24,7 @@ def merge(own: dict, default: dict):
 
 
 def getYAML(dirname):
+    yaml = ruamel.yaml.YAML()
     # y是一个新的orderdict
     y = yaml.load("{}")
     files = [f for f in os.listdir(dirname) if (os.path.isfile(
@@ -35,6 +37,7 @@ def getYAML(dirname):
 
 
 def generate(url=""):
+    yaml = ruamel.yaml.YAML()
     files = [f for f in os.listdir("./Config/rule-groups") if (os.path.isfile(
         os.path.join("./Config/rule-groups", f)) and f.endswith(".yaml"))]
     for file in files:
@@ -63,6 +66,7 @@ def listen(port=80):
 
     @app.route("/")
     def index():
+        yaml = ruamel.yaml.YAML()
         subscription_url = request.args.get("subscription")
         subconverter_url = request.args.get("subconverter")
         provider_url = request.args.get("provider")  # provider url
