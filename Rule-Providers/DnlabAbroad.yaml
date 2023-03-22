@@ -1,0 +1,4 @@
+payload:
+    # 内容：dnlab维护的国外网站/需要挂代理才能正常使用的网站列表
+    # 数量：1条
+    - DOMAIN,www.bing.com

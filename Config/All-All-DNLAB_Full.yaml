@@ -383,6 +383,12 @@ rule-providers:
     url: https://raw.lovely.ink/darknightlab/ClashRule/main/Rule-Providers/DnlabChina.yaml
     path: ./rule-providers/DNLAB/DnlabChina.yaml
     interval: 3600
+  DnlabAbroad:
+    type: http
+    behavior: classical
+    url: https://raw.lovely.ink/darknightlab/ClashRule/main/Rule-Providers/DnlabAbroad.yaml
+    path: ./rule-providers/DNLAB/DnlabAbroad.yaml
+    interval: 3600
   HomeBroadband:
     type: http
     behavior: classical
@@ -654,6 +660,7 @@ rules:
 - RULE-SET,Scholar,学术网站
     # 其他
 - RULE-SET,DnlabChina,DIRECT
+- RULE-SET,DnlabAbroad,节点选择
 - RULE-SET,HomeBroadband,解锁节点
 - RULE-SET,RequestLimit,负载均衡
 - RULE-SET,Adobe,节点选择
