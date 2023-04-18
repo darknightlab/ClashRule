@@ -82,6 +82,8 @@ def listen(port=80):
         if provider_url:
             pass
         elif subscription_url:
+            # 见 https://github.com/tindy2013/subconverter/issues/598, subconverter暂时无法正确转换vmess到clash, 因此需要添加flag使v2board发送clash格式订阅才能转换
+            subscription_url = subscription_url+"&flag=clash"
             provider_url = subc + "/sub?target=clash&list=true&url={}".format(
                 urllib.parse.quote_plus(subscription_url))
         else:
