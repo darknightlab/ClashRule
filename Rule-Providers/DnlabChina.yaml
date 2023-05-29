@@ -1,4 +1,5 @@
 payload:
+    # 走DIRECT直连
     # 内容：dnlab维护的国内网站列表
     # 数量：7条
     - DOMAIN,www.dnlab.net
