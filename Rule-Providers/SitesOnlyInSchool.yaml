@@ -3,5 +3,5 @@ payload:
     # 数量：4条
     - DOMAIN-SUFFIX,tcep.pku.edu.cn
     - DOMAIN-SUFFIX,byr.pt
-    - DOMAIN,pku.dnlab.net
+    - DOMAIN-SUFFIX,pku.dnlab.net
     - DOMAIN,changelog.kawaii.id
