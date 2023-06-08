@@ -241,7 +241,7 @@ proxy-groups:
     - name: 解锁节点
       type: select
       use:
-          - Netflix
+          - Unlock
     - name: 学术节点
       type: select
       use:

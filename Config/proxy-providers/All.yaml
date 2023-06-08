@@ -45,10 +45,10 @@ proxy-providers:
         filter: None|none|KR|Korea|KOR|首尔|韩|韓
 
     # Streaming Media; 流媒体
-    Netflix:
+    Unlock:
         <<: *proxy-providers-template
         path: ./proxy-providers/All.yaml
-        filter: None|none|NF|奈飞|解锁|Netflix|NETFLIX|Media
+        filter: None|none|🔓|Unlock|unlock|UNLOCK|NF|奈飞|解锁|Netflix|NETFLIX|Media|Hulu|HBO|Disney|Prime
 
     # Scholar; 学术
     CERNET:
