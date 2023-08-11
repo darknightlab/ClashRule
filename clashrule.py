@@ -53,6 +53,7 @@ def generate(url=""):
             merge(config, rule_providers)
             merge(config, rule_groups)
             config["proxy-providers-template"]["url"] = url
+            # 第一个ALL代表了读取所有的proxy-providers, 第二个ALL代表了读取所有的rule-providers，最后是rule-groups的名字
             with open("./Config/All-All-{}.yaml".format(file.split(".")[0]), "w") as f:
                 yaml.dump(config, f)
 

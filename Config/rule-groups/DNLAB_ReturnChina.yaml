@@ -266,23 +266,23 @@ rules:
     - RULE-SET,SitesOnlyInSchool,学术网站
     - RULE-SET,Scholar,学术网站
     # 其他
-    - RULE-SET,DnlabChina,DIRECT
-    - RULE-SET,DnlabAbroad,节点选择
-    - RULE-SET,HomeBroadband,解锁节点
-    - RULE-SET,RequestLimit,负载均衡
-    - RULE-SET,Adobe,节点选择
-    - RULE-SET,Google,节点选择
-    - RULE-SET,GoogleCN,DIRECT
+    - RULE-SET,DnlabChina,大陆节点
+    - RULE-SET,DnlabAbroad,DIRECT
+    # - RULE-SET,HomeBroadband,解锁节点
+    # - RULE-SET,RequestLimit,负载均衡
+    # - RULE-SET,Adobe,节点选择
+    # - RULE-SET,Google,节点选择
+    - RULE-SET,GoogleCN,大陆节点
     - RULE-SET,GoogleFCM,谷歌FCM
     - RULE-SET,Microsoft,微软服务
     - RULE-SET,OneDrive,微软云盘
     - RULE-SET,Telegram,电报消息
     # 游戏
     - RULE-SET,Bahamut,巴哈姆特
-    - RULE-SET,Blizzard,DIRECT
+    - RULE-SET,Blizzard,游戏平台
     - RULE-SET,Epic,游戏平台
     - RULE-SET,Steam,游戏平台
-    - RULE-SET,SteamCN,DIRECT
+    - RULE-SET,SteamCN,大陆节点
     - RULE-SET,Xbox,游戏平台
     # 媒体
     - RULE-SET,NetEaseMusic,网易云音乐
@@ -299,20 +299,20 @@ rules:
     - RULE-SET,ChinaMedia,国内媒体
     - RULE-SET,ProxyMedia,国外媒体
     # 购物
-    - RULE-SET,Amazon,节点选择
-    - RULE-SET,AmazonIp,节点选择
-    - RULE-SET,Apple,苹果服务
+    # - RULE-SET,Amazon,节点选择
+    # - RULE-SET,AmazonIp,节点选择
+    # - RULE-SET,Apple,苹果服务
     # 开发
-    - RULE-SET,Developer,节点选择
+    # - RULE-SET,Developer,节点选择
     # 18
-    - RULE-SET,EHGallery,节点选择
-    - RULE-SET,Porn,节点选择
+    # - RULE-SET,EHGallery,节点选择
+    # - RULE-SET,Porn,节点选择
     # 国内
-    - RULE-SET,ChinaCompanyIp,DIRECT
-    - RULE-SET,ChinaDomain,DIRECT
-    - RULE-SET,ChinaIp,DIRECT
+    - RULE-SET,ChinaCompanyIp,大陆节点
+    - RULE-SET,ChinaDomain,大陆节点
+    - RULE-SET,ChinaIp,大陆节点
     # GFW
-    - RULE-SET,ProxyGFWlist,节点选择
+    # - RULE-SET,ProxyGFWlist,节点选择
     # 广告
     - RULE-SET,BanAD,广告拦截
     - RULE-SET,BanEasyList,广告拦截

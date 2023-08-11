@@ -25,6 +25,13 @@ proxy-providers:
     path: ./proxy-providers/All.yaml
         # filter:
 
+    # 自动选择，暂时用不上，因为clash的正则用不了
+  AutoSelect:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+        # go的正则表达式，去掉含CN的节点，包含其他所有节点
+    filter: None|none
+
     # Countries or Regions; 国家或地区
   HK:
     <<: *proxy-providers-template
@@ -51,6 +58,10 @@ proxy-providers:
     <<: *proxy-providers-template
     path: ./proxy-providers/All.yaml
     filter: None|none|KR|Korea|KOR|首尔|韩|韓
+  CN:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|none|CN|China
 
     # Streaming Media; 流媒体
   Unlock:
