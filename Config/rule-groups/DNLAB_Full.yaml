@@ -242,7 +242,7 @@ proxy-groups:
     use:
       - KR
   - name: 大陆节点
-    type: url-test
+    type: select
     use:
       - CN
 
