@@ -24,7 +24,7 @@ dns:
     # - https://1.0.0.1/dns-query # DNS over HTTPS
     # - https://8.8.8.8/dns-query # DNS over HTTPS
     # - https://8.8.4.4/dns-query # DNS over HTTPS
-  fallback:
+  fallback: # fallback dns use proxy according to https://github.com/Dreamacro/clash/issues/681
     - https://1.1.1.1/dns-query # DNS over HTTPS
     - https://1.0.0.1/dns-query # DNS over HTTPS
     - https://8.8.8.8/dns-query # DNS over HTTPS
@@ -36,4 +36,4 @@ dns:
     #   - 0.0.0.0/0
     #   - ::/0
     domain:
-      - "*"
+      - "*.*" # All domain will use fallback, this filter may be wrong. check https://github.com/Dreamacro/clash/blob/master/component/trie/domain.go for more information
