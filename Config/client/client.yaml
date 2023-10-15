@@ -20,9 +20,9 @@ dns:
   use-hosts: true # lookup hosts and return IP record
   nameserver:
     # - https://api.dnlab.net/9FE8749B-0E86-582D-E33F-08204D58F81B
-    - https://1.1.1.1/dns-query # DNS over HTTPS
+    # - https://1.1.1.1/dns-query # DNS over HTTPS
     # - https://1.0.0.1/dns-query # DNS over HTTPS
-    # - https://8.8.8.8/dns-query # DNS over HTTPS
+    - https://8.8.8.8/dns-query # DNS over HTTPS # maybe 8.8.8.8 will tend to return the IP of the nearest server, 1.1.1.1 may not
     # - https://8.8.4.4/dns-query # DNS over HTTPS
   fallback: # fallback dns use proxy according to https://github.com/Dreamacro/clash/issues/681
     - https://1.1.1.1/dns-query # DNS over HTTPS
@@ -31,7 +31,7 @@ dns:
     - https://8.8.4.4/dns-query # DNS over HTTPS
   fallback-filter:
     geoip: false
-    # geoip-code: CN
+    geoip-code: CN
     # ipcidr:
     #   - 0.0.0.0/0
     #   - ::/0
