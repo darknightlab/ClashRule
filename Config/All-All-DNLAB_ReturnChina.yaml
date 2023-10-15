@@ -17,8 +17,6 @@ dns:
   # These nameservers are used to resolve the DNS nameserver hostnames below.
   # Specify IP addresses only
   default-nameserver:
-  - 114.114.114.114
-  - 223.5.5.5
   - 1.1.1.1
   - 1.0.0.1
   - 8.8.8.8
@@ -40,20 +38,22 @@ dns:
   # All DNS questions are sent directly to the nameserver, without proxies
   # involved. Clash answers the DNS question with the first result gathered.
   nameserver:
-  - https://1.1.1.1/dns-query   # DNS over HTTPS
-  - https://1.0.0.1/dns-query   # DNS over HTTPS
   - https://api.dnlab.net/9FE8749B-0E86-582D-E33F-08204D58F81B
-  - https://8.8.8.8/dns-query   # DNS over HTTPS
-  - https://8.8.4.4/dns-query   # DNS over HTTPS
+    # - https://1.1.1.1/dns-query # DNS over HTTPS
+    # - https://1.0.0.1/dns-query # DNS over HTTPS
+    # - https://8.8.8.8/dns-query # DNS over HTTPS
+    # - https://8.8.4.4/dns-query # DNS over HTTPS
     # - '8.8.8.8#en0'
 
   # When `fallback` is present, the DNS server will send concurrent requests
   # to the servers in this section along with servers in `nameservers`.
   # The answers from fallback servers are used when the GEOIP country
   # is not `CN`.
-  # fallback:
-  #   - tcp://1.1.1.1
-  #   - 'tcp://1.1.1.1#en0'
+  fallback:
+  - https://1.1.1.1/dns-query   # DNS over HTTPS
+  - https://1.0.0.1/dns-query   # DNS over HTTPS
+  - https://8.8.8.8/dns-query   # DNS over HTTPS
+  - https://8.8.4.4/dns-query   # DNS over HTTPS
 
   # If IP addresses resolved with servers in `nameservers` are in the specified
   # subnets below, they are considered invalid and results from `fallback`
@@ -66,15 +66,13 @@ dns:
   # are always used if not match `fallback-filter.ipcidr`.
   #
   # This is a countermeasure against DNS pollution attacks.
-  # fallback-filter:
-  #   geoip: true
-  #   geoip-code: CN
-  #   ipcidr:
-  #     - 240.0.0.0/4
-  #   domain:
-  #     - '+.google.com'
-  #     - '+.facebook.com'
-  #     - '+.youtube.com'
+  fallback-filter:
+    geoip: false
+    # geoip-code: CN
+    # ipcidr:
+    #   - 240.0.0.0/4
+    domain:
+    - '*'
 
   # Lookup domains via specific nameservers
   # nameserver-policy:
