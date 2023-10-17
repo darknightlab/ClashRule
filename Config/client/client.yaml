@@ -20,6 +20,7 @@ dns:
   use-hosts: true # lookup hosts and return IP record
   nameserver:
     - https://api.dnlab.net:16443/9FE8749B-0E86-582D-E33F-08204D58F81B/dns-query
+    - https://dns.kawaii.net.cn/dns-query
     # - https://dns.tuna.tsinghua.edu.cn:8443/dns-query
     # - https://1.1.1.1/dns-query # DNS over HTTPS
     # - https://1.0.0.1/dns-query # DNS over HTTPS
