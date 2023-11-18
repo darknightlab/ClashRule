@@ -12,15 +12,17 @@ dns:
   ipv6: true # when the false, response to AAAA questions will be empty
   default-nameserver:
     - 1.1.1.1
-    - 1.0.0.1
+    # - 1.0.0.1
     - 8.8.8.8
-    - 8.8.4.4
+    # - 8.8.4.4
+    - "[2a06:1287:300::6666]:53"
+    - 114.114.114.114
   # enhanced-mode: fake-ip
   # fake-ip-range: 198.18.0.1/16 # Fake IP addresses pool CIDR
   use-hosts: true # lookup hosts and return IP record
   nameserver:
-    - https://api.dnlab.net:16443/9FE8749B-0E86-582D-E33F-08204D58F81B/dns-query
     - https://dns.kawaii.net.cn/dns-query
+    - https://api.dnlab.net:16443/9FE8749B-0E86-582D-E33F-08204D58F81B/dns-query
     # - https://dns.tuna.tsinghua.edu.cn:8443/dns-query
     # - https://1.1.1.1/dns-query # DNS over HTTPS
     # - https://1.0.0.1/dns-query # DNS over HTTPS
@@ -31,6 +33,8 @@ dns:
     - https://1.0.0.1/dns-query # DNS over HTTPS
     - https://8.8.8.8/dns-query # DNS over HTTPS
     - https://8.8.4.4/dns-query # DNS over HTTPS
+    - https://dns.kawaii.net.cn/dns-query
+    - https://api.dnlab.net:16443/9FE8749B-0E86-582D-E33F-08204D58F81B/dns-query
   fallback-filter:
     geoip: true
     geoip-code: CN
