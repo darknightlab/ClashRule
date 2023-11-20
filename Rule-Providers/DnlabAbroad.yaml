@@ -3,5 +3,6 @@ payload:
     # 数量：4条
     - DOMAIN,www.bing.com
     - DOMAIN,sydney.bing.com
+    - DOMAIN,copilot.microsoft.com
     - DOMAIN-SUFFIX,qbittorrent.org
     - DOMAIN,tracker.kawaii.id
