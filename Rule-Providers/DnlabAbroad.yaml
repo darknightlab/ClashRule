@@ -5,4 +5,4 @@ payload:
     - DOMAIN,sydney.bing.com
     - DOMAIN,copilot.microsoft.com
     - DOMAIN-SUFFIX,qbittorrent.org
-    - DOMAIN,tracker.kawaii.id
+    - DOMAIN,tracker.projectk.org

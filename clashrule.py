@@ -10,7 +10,7 @@ import urllib.parse
 # yaml = ruamel.yaml.YAML()
 
 githubraw = "https://raw.lovely.ink"
-subconverter_default = "https://subconverter.kawaii.id"
+subconverter_default = "https://subconverter.projectk.org"
 timeout = 10
 
 
