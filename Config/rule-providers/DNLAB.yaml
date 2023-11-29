@@ -1,4 +1,4 @@
-# raw.githubusercontent.com mirror: raw.lovely.ink
+# raw.githubusercontent.com mirror: raw.projectk.org
 # 自用的ACL4SSR补充规则
 # intelval: 3600 是因为clash内核更新策略的bug/featrue: https://github.com/Dreamacro/clash/issues/2429
 # 这样可以防止 一天之内关闭了clash客户端导致无法更新的事发生
@@ -6,30 +6,30 @@ rule-providers:
     SitesOnlyInSchool:
         type: http
         behavior: classical
-        url: "https://raw.lovely.ink/darknightlab/ClashRule/main/Rule-Providers/SitesOnlyInSchool.yaml"
+        url: "https://raw.projectk.org/darknightlab/ClashRule/main/Rule-Providers/SitesOnlyInSchool.yaml"
         path: ./rule-providers/DNLAB/SitesOnlyInSchool.yaml
         interval: 3600
     DnlabChina:
         type: http
         behavior: classical
-        url: "https://raw.lovely.ink/darknightlab/ClashRule/main/Rule-Providers/DnlabChina.yaml"
+        url: "https://raw.projectk.org/darknightlab/ClashRule/main/Rule-Providers/DnlabChina.yaml"
         path: ./rule-providers/DNLAB/DnlabChina.yaml
         interval: 3600
     DnlabAbroad:
         type: http
         behavior: classical
-        url: "https://raw.lovely.ink/darknightlab/ClashRule/main/Rule-Providers/DnlabAbroad.yaml"
+        url: "https://raw.projectk.org/darknightlab/ClashRule/main/Rule-Providers/DnlabAbroad.yaml"
         path: ./rule-providers/DNLAB/DnlabAbroad.yaml
         interval: 3600
     HomeBroadband:
         type: http
         behavior: classical
-        url: "https://raw.lovely.ink/darknightlab/ClashRule/main/Rule-Providers/HomeBroadband.yaml"
+        url: "https://raw.projectk.org/darknightlab/ClashRule/main/Rule-Providers/HomeBroadband.yaml"
         path: ./rule-providers/DNLAB/HomeBroadband.yaml
         interval: 3600
     RequestLimit:
         type: http
         behavior: classical
-        url: "https://raw.lovely.ink/darknightlab/ClashRule/main/Rule-Providers/RequestLimit.yaml"
+        url: "https://raw.projectk.org/darknightlab/ClashRule/main/Rule-Providers/RequestLimit.yaml"
         path: ./rule-providers/DNLAB/RequestLimit.yaml
         interval: 3600

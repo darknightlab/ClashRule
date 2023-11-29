@@ -9,7 +9,7 @@ import urllib.parse
 # 注释掉下方这行, 在每一个用到yaml的地方新开一个, 或许可以解决问题
 # yaml = ruamel.yaml.YAML()
 
-githubraw = "https://raw.lovely.ink"
+githubraw = "https://raw.projectk.org"
 subconverter_default = "https://subconverter.projectk.org"
 timeout = 10
 
