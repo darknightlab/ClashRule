@@ -15,7 +15,7 @@ dns:
     # - 1.0.0.1
   - 8.8.8.8
     # - 8.8.4.4
-  - '[2a06:1287:300::6666]:53'
+  - '[2602:f9df:111::1111]:53'
   - 114.114.114.114
   # enhanced-mode: fake-ip
   # fake-ip-range: 198.18.0.1/16 # Fake IP addresses pool CIDR
