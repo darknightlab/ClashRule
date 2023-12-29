@@ -111,7 +111,7 @@ def listen(port=80):
         # 尝试获取订阅信息并返回
         try:
             hd_in = requests.get(provider_url, headers={
-                "user-agent": "ClashforWindows/0.19.29"
+                "user-agent": "clash-verge/1.4.5"
             }, timeout=timeout)
             # 文件名
             # hd_out["content-disposition"] = hd_in.headers.get("content-disposition")
