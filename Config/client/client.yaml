@@ -4,7 +4,8 @@ port: 7892
 allow-lan: true
 mode: Rule
 log-level: info
-external-controller: :9090
+external-controller: 0.0.0.0:9090
+unified-delay: true
 ipv6: true
 dns:
   enable: true
