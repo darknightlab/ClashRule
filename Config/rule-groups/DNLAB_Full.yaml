@@ -20,7 +20,7 @@ proxy-groups:
   - name: 自动选择
     type: url-test
     use:
-      - All
+      - AutoSelect # 不用All因为All包含CN节点
     url: http://www.gstatic.com/generate_204
     interval: 300
   - name: 负载均衡

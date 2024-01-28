@@ -4,7 +4,8 @@ port: 7892
 allow-lan: true
 mode: Rule
 log-level: info
-external-controller: :9090
+external-controller: 0.0.0.0:9090
+unified-delay: true
 ipv6: true
 dns:
   enable: true
@@ -67,7 +68,7 @@ proxy-providers:
     <<: *proxy-providers-template
     path: ./proxy-providers/All.yaml
         # go的正则表达式，去掉含CN的节点，包含其他所有节点
-    filter: None|none
+    exclude-filter: CN
 
     # Countries or Regions; 国家或地区
   HK:

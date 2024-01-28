@@ -23,7 +23,7 @@ proxy-providers:
         <<: *proxy-providers-template
         path: ./proxy-providers/All.yaml
         # go的正则表达式，去掉含CN的节点，包含其他所有节点
-        filter: None|none
+        exclude-filter: CN
 
     # Countries or Regions; 国家或地区
     HK:
