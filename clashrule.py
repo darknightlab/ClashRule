@@ -107,22 +107,24 @@ def listen(port=80):
         if filename:
             hd_out["content-disposition"] = "attachment; filename={}".format(
                 filename)
-
-        # 尝试获取订阅信息并返回
-        try:
-            hd_in = requests.get(provider_url, headers={
-                "user-agent": "clash-verge/1.4.5"
-            }, timeout=timeout)
-            # 文件名
-            # hd_out["content-disposition"] = hd_in.headers.get("content-disposition")
-            # 更新间隔
-            hd_out["profile-update-interval"] = hd_in.headers.get(
-                "profile-update-interval")
-            # 流量信息
-            hd_out["subscription-userinfo"] = hd_in.headers.get(
-                "subscription-userinfo")
-        except:
-            pass
+        
+        clash_info=request.args.get("clashinfo").lower()
+        if clash_info == "true" or (clash_info is None and "clash-verge" in request.headers.get("user-agent").lower()):
+            # 尝试获取订阅信息并返回
+            try:
+                hd_in = requests.get(provider_url, headers={
+                    "user-agent": "clash-verge/1.4.5"
+                }, timeout=timeout)
+                # 文件名
+                # hd_out["content-disposition"] = hd_in.headers.get("content-disposition")
+                # 更新间隔
+                hd_out["profile-update-interval"] = hd_in.headers.get(
+                    "profile-update-interval")
+                # 流量信息
+                hd_out["subscription-userinfo"] = hd_in.headers.get(
+                    "subscription-userinfo")
+            except:
+                pass
 
         buf = io.BytesIO()
         yaml.dump(config, buf)
