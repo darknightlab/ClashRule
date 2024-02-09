@@ -108,7 +108,9 @@ def listen(port=80):
             hd_out["content-disposition"] = "attachment; filename={}".format(
                 filename)
         
-        clash_info=request.args.get("clashinfo").lower()
+        clash_info=request.args.get("clashinfo")
+        if clash_info is not None:
+            clash_info=clash_info.lower()
         if clash_info == "true" or (clash_info is None and "clash-verge" in request.headers.get("user-agent").lower()):
             # 尝试获取订阅信息并返回
             try:
