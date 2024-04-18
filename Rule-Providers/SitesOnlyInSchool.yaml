@@ -1,9 +1,10 @@
 payload:
     # 内容：仅在学校内可访问的网站
-    # 数量：5条
+    # 数量：7条
     - DOMAIN-SUFFIX,tcep.pku.edu.cn
     - DOMAIN-SUFFIX,byr.pt
     - DOMAIN-SUFFIX,pku.dnlab.net
     - DOMAIN,changelog.projectk.org
     - DOMAIN,opg.optica.org
     - DOMAIN,optics.ansys.com
+    - IP-CIDR,240c:c000::/20
