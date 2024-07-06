@@ -22,12 +22,12 @@ dns:
   # fake-ip-range: 198.18.0.1/16 # Fake IP addresses pool CIDR
   use-hosts: true # lookup hosts and return IP record
   nameserver:
-    - https://1.1.1.1/dns-query # DNS over HTTPS
+    # - https://1.1.1.1/dns-query # DNS over HTTPS
     # - https://1.0.0.1/dns-query # DNS over HTTPS
     # - https://8.8.8.8/dns-query # DNS over HTTPS
     # - https://8.8.4.4/dns-query # DNS over HTTPS
     - https://dns.kawaii.net.cn/dns-query
-    - https://api.dnlab.net:16443/9FE8749B-0E86-582D-E33F-08204D58F81B/dns-query
+    - https://dns.dnlab.net:16443/dns-query
     # - https://dns.tuna.tsinghua.edu.cn:8443/dns-query
   fallback: # fallback dns use proxy according to https://github.com/Dreamacro/clash/issues/681
     - https://1.1.1.1/dns-query # DNS over HTTPS
@@ -35,7 +35,7 @@ dns:
     - https://8.8.8.8/dns-query # DNS over HTTPS
     - https://8.8.4.4/dns-query # DNS over HTTPS
     - https://dns.kawaii.net.cn/dns-query
-    - https://api.dnlab.net:16443/9FE8749B-0E86-582D-E33F-08204D58F81B/dns-query
+    - https://dns.dnlab.net:16443/dns-query
   fallback-filter:
     geoip: true
     geoip-code: CN
