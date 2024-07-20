@@ -26,16 +26,16 @@ dns:
     # - https://1.0.0.1/dns-query # DNS over HTTPS
     # - https://8.8.8.8/dns-query # DNS over HTTPS
     # - https://8.8.4.4/dns-query # DNS over HTTPS
-    - https://dns.kawaii.net.cn/dns-query
     - https://dns.dnlab.net:16443/dns-query
+    - https://dns.kawaii.net.cn/dns-query
     # - https://dns.tuna.tsinghua.edu.cn:8443/dns-query
   fallback: # fallback dns use proxy according to https://github.com/Dreamacro/clash/issues/681
     - https://1.1.1.1/dns-query # DNS over HTTPS
     - https://1.0.0.1/dns-query # DNS over HTTPS
     - https://8.8.8.8/dns-query # DNS over HTTPS
     - https://8.8.4.4/dns-query # DNS over HTTPS
-    - https://dns.kawaii.net.cn/dns-query
     - https://dns.dnlab.net:16443/dns-query
+    - https://dns.kawaii.net.cn/dns-query
   fallback-filter:
     geoip: true
     geoip-code: CN
