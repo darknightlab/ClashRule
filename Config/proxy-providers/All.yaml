@@ -19,11 +19,16 @@ proxy-providers:
         # filter:
 
     # 自动选择，暂时用不上，因为clash的正则用不了
-    AutoSelect:
+    AutoSelectNOCN:
         <<: *proxy-providers-template
         path: ./proxy-providers/All.yaml
         # go的正则表达式，去掉含CN的节点，包含其他所有节点
         exclude-filter: CN
+
+    AutoSelectCN:
+        <<: *proxy-providers-template
+        path: ./proxy-providers/All.yaml
+        filter: None|none|CN|China
 
     # Countries or Regions; 国家或地区
     HK:
