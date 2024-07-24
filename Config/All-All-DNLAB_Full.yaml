@@ -460,9 +460,9 @@ proxy-groups:
   type: select
   proxies:
   - DIRECT
+  - 手动切换
   - 自动选择(国外)
   - 自动选择(大陆)
-  - 手动切换
   - 香港节点
   - 日本节点
   - 新加坡节点
