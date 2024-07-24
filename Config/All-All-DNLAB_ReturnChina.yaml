@@ -26,7 +26,7 @@ dns:
     # - https://1.0.0.1/dns-query # DNS over HTTPS
     # - https://8.8.8.8/dns-query # DNS over HTTPS
     # - https://8.8.4.4/dns-query # DNS over HTTPS
-  - https://tools.dnlab.net:16443/dns-query
+  - https://tools.dnlab.net:16443/9c880947-bae6-4daa-beea-63f68a8df261/dns-query
   - https://dns.projectk.org/dns-query
     # - https://dns.tuna.tsinghua.edu.cn:8443/dns-query
   fallback: # fallback dns use proxy according to https://github.com/Dreamacro/clash/issues/681
@@ -34,7 +34,7 @@ dns:
   - https://1.0.0.1/dns-query   # DNS over HTTPS
   - https://8.8.8.8/dns-query   # DNS over HTTPS
   - https://8.8.4.4/dns-query   # DNS over HTTPS
-  - https://dns.dnlab.net:16443/dns-query
+  - https://tools.dnlab.net:16443/9c880947-bae6-4daa-beea-63f68a8df261/dns-query
   - https://dns.projectk.org/dns-query
   fallback-filter:
     geoip: true
