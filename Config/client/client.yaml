@@ -19,13 +19,15 @@ dns:
   use-hosts: true # lookup hosts and return IP record
   nameserver:
     - https://tools.dnlab.net:16443/9c880947-bae6-4daa-beea-63f68a8df261/dns-query
+    - https://dohcn.projectk.org/dns-query
     - https://dns.projectk.org/dns-query
-    - "1.1.1.1#RULES"
+    - https://1.1.1.1/dns-query#RULES
   nameserver-policy:
     "geosite:private":
       - system
     "geosite:cn":
       - https://tools.dnlab.net:16443/9c880947-bae6-4daa-beea-63f68a8df261/dns-query
+      - https://dohcn.projectk.org/dns-query
 geo-auto-update: true
 geo-update-interval: 24
 geox-url:
