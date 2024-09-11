@@ -1,3 +1,4 @@
+export const config_string = `
 mixed-port: 7890
 socks-port: 7891
 port: 7892
@@ -50,38 +51,32 @@ sniffer:
       ports: [80, 8080, 16080]
   skip-domain:
   - Mijia Cloud
-proxy-providers-template: &proxy-providers-template
-  type: http
-    # your proxy provider url
-  url: ''
-  interval: 3600
-    # filter: # golang regex string
-  health-check:
-    enable: true
-    interval: 1800
-    lazy: false
-    url: http://www.gstatic.com/generate_204
-
 proxy-providers:
-    # All; 所有
-  All:
-    <<: *proxy-providers-template
+  # All; 所有
+  All: &proxy-providers-template
+    type: http
+    url: # your proxy provider url
+    interval: 3600
+    health-check:
+      enable: true
+      interval: 1800
+      lazy: false
+      url: http://www.gstatic.com/generate_204
     path: ./proxy-providers/All.yaml
-        # filter:
 
-    # 自动选择，暂时用不上，因为clash的正则用不了
+  # 自动选择，暂时用不上，因为clash的正则用不了
   AutoSelectNOCN:
     <<: *proxy-providers-template
     path: ./proxy-providers/All.yaml
-        # go的正则表达式，去掉含CN的节点，包含其他所有节点
+    # go的正则表达式，去掉含CN的节点，包含其他所有节点
     exclude-filter: CN
 
   AutoSelectCN:
     <<: *proxy-providers-template
     path: ./proxy-providers/All.yaml
-    filter: None|none|CN|China
+    filter: None|none|CN|China # None|none|用于匹配不存在节点, 防止clash报错
 
-    # Countries or Regions; 国家或地区
+  # Countries or Regions; 国家或地区
   HK:
     <<: *proxy-providers-template
     path: ./proxy-providers/All.yaml
@@ -112,18 +107,19 @@ proxy-providers:
     path: ./proxy-providers/All.yaml
     filter: None|none|CN|China
 
-    # Streaming Media; 流媒体
+  # Streaming Media; 流媒体
   Unlock:
     <<: *proxy-providers-template
     path: ./proxy-providers/All.yaml
     filter: None|none|🔓|Unlock|unlock|UNLOCK|NF|奈飞|解锁|Netflix|NETFLIX|Media|Hulu|HBO|Disney|Prime
 
-    # Scholar; 学术
+  # Scholar; 学术
   CERNET:
     <<: *proxy-providers-template
     path: ./proxy-providers/All.yaml
     filter: None|none|PKU|THU|SJTU|USTC
 rule-providers:
+  # raw.githubusercontent.com mirror: raw.projectk.org
   AbemaTV:
     type: http
     behavior: classical
@@ -465,8 +461,10 @@ proxy-groups:
 - name: 节点选择
   type: select
   proxies:
-  - 自动选择
+  - DIRECT
   - 手动切换
+  - 自动选择(国外)
+  - 自动选择(大陆)
   - 香港节点
   - 日本节点
   - 新加坡节点
@@ -474,16 +472,21 @@ proxy-groups:
   - 美国节点
   - 韩国节点
   - 大陆节点
-  - DIRECT
 - name: 手动切换
   type: select
   use:
   - All
-- name: 自动选择
+- name: 自动选择(国外)
   type: url-test
   use:
-  - All
+  - AutoSelectNOCN     # 不用All因为All包含CN节点
   url: http://www.gstatic.com/generate_204
+  interval: 300
+- name: 自动选择(大陆)
+  type: url-test
+  use:
+  - AutoSelectCN
+  url: https://www.google.cn/generate_204
   interval: 300
 - name: 负载均衡
   type: load-balance
@@ -491,99 +494,94 @@ proxy-groups:
   - All
 
   # 内容分类, 规则集映射到此
+- name: 大陆网站
+  type: select
+  proxies:
+  - DIRECT
+  - 大陆节点
+  - 节点选择
+- name: 国外网站
+  type: select
+  proxies:
+  - 节点选择
+  - DIRECT
 - name: 学术网站
   type: select
   proxies:
   - DIRECT
   - 学术节点
   - 节点选择
-  - 自动选择
-  - 手动切换
 - name: 电报消息
   type: select
   proxies:
   - 节点选择
-  - 自动选择
-  - 手动切换
+  - DIRECT
   - 香港节点
   - 日本节点
   - 新加坡节点
   - 台湾节点
   - 美国节点
   - 韩国节点
-  - DIRECT
 - name: 油管视频
   type: select
   proxies:
   - 节点选择
-  - 自动选择
-  - 手动切换
+  - DIRECT
   - 香港节点
   - 日本节点
   - 新加坡节点
   - 台湾节点
   - 美国节点
   - 韩国节点
-  - DIRECT
 - name: 奈飞视频
   type: select
   proxies:
   - 解锁节点
   - 节点选择
-  - 自动选择
-  - 手动切换
+  - DIRECT
   - 香港节点
   - 日本节点
   - 新加坡节点
   - 台湾节点
   - 美国节点
   - 韩国节点
-  - DIRECT
 - name: 巴哈姆特
   type: select
   proxies:
   - 台湾节点
   - 节点选择
-  - 自动选择
-  - 手动切换
   - DIRECT
 - name: 哔哩哔哩
   type: select
   proxies:
-  - 全球直连
+  - DIRECT
+  - 节点选择
+  - 大陆节点
   - 台湾节点
   - 香港节点
-  - 大陆节点
 - name: 国外媒体
   type: select
   proxies:
-  - 解锁节点
   - 节点选择
-  - 自动选择
-  - 手动切换
+  - 解锁节点
+  - DIRECT
   - 香港节点
   - 日本节点
   - 新加坡节点
   - 台湾节点
   - 美国节点
   - 韩国节点
-  - DIRECT
 - name: 国内媒体
   type: select
   proxies:
   - DIRECT
-  - 手动切换
-  - 香港节点
-  - 台湾节点
-  - 日本节点
-  - 新加坡节点
   - 大陆节点
+  - 节点选择
 - name: 谷歌FCM
   type: select
   proxies:
   - DIRECT
   - 节点选择
-  - 手动切换
   - 香港节点
   - 台湾节点
   - 日本节点
@@ -595,7 +593,6 @@ proxy-groups:
   proxies:
   - DIRECT
   - 节点选择
-  - 手动切换
   - 香港节点
   - 台湾节点
   - 日本节点
@@ -607,7 +604,6 @@ proxy-groups:
   proxies:
   - DIRECT
   - 节点选择
-  - 手动切换
   - 香港节点
   - 台湾节点
   - 日本节点
@@ -619,7 +615,6 @@ proxy-groups:
   proxies:
   - DIRECT
   - 节点选择
-  - 手动切换
   - 香港节点
   - 台湾节点
   - 日本节点
@@ -631,21 +626,19 @@ proxy-groups:
   proxies:
   - DIRECT
   - 节点选择
-  - 手动切换
+  - 大陆节点
   - 香港节点
   - 台湾节点
   - 日本节点
   - 新加坡节点
   - 美国节点
   - 韩国节点
-  - 大陆节点
 - name: 网易云音乐
-    # 不知道怎么实现ACL4SSR的自动选择`(网易|音乐|解锁|Music|NetEase), 应该是要新建一个music providers
+    # 不知道怎么实现ACL4SSR的自动选择(网易|音乐|解锁|Music|NetEase), 应该是要新建一个music providers
   type: select
   proxies:
   - DIRECT
   - 节点选择
-  - 手动切换
   - 香港节点
   - 台湾节点
   - 日本节点
@@ -658,8 +651,6 @@ proxy-groups:
   proxies:
   - DIRECT
   - 节点选择
-  - 自动选择
-  - 手动切换
 - name: 广告拦截
   type: select
   proxies:
@@ -675,8 +666,6 @@ proxy-groups:
   proxies:
   - DIRECT
   - 节点选择
-  - 自动选择
-  - 手动切换
 
   # 国家与地区分类, proxy-providers映射到此, 采用url-test, 这个分类上大概自动选择比较好
   # 2023.10.08 我现在觉得select比较好
@@ -718,7 +707,6 @@ proxy-groups:
   type: select
   use:
   - CERNET
-
 rules:
   # 白名单
 - RULE-SET,UnBan,DIRECT
@@ -729,13 +717,13 @@ rules:
 - RULE-SET,SitesOnlyInSchool,学术网站
 - RULE-SET,Scholar,学术网站
   # 其他
-- RULE-SET,DnlabChina,大陆节点
-- RULE-SET,DnlabAbroad,DIRECT
-  # - RULE-SET,HomeBroadband,解锁节点
-  # - RULE-SET,RequestLimit,负载均衡
-  # - RULE-SET,Adobe,节点选择
-  # - RULE-SET,Google,节点选择
-- RULE-SET,GoogleCN,大陆节点
+- RULE-SET,DnlabChina,大陆网站
+- RULE-SET,DnlabAbroad,国外网站
+- RULE-SET,HomeBroadband,解锁节点
+- RULE-SET,RequestLimit,负载均衡
+- RULE-SET,Adobe,国外网站
+- RULE-SET,Google,国外网站
+- RULE-SET,GoogleCN,大陆网站
 - RULE-SET,GoogleFCM,谷歌FCM
 - RULE-SET,Microsoft,微软服务
 - RULE-SET,OneDrive,微软云盘
@@ -745,7 +733,7 @@ rules:
 - RULE-SET,Blizzard,游戏平台
 - RULE-SET,Epic,游戏平台
 - RULE-SET,Steam,游戏平台
-- RULE-SET,SteamCN,大陆节点
+- RULE-SET,SteamCN,大陆网站
 - RULE-SET,Xbox,游戏平台
   # 媒体
 - RULE-SET,NetEaseMusic,网易云音乐
@@ -762,20 +750,20 @@ rules:
 - RULE-SET,ChinaMedia,国内媒体
 - RULE-SET,ProxyMedia,国外媒体
   # 购物
-  # - RULE-SET,Amazon,节点选择
-  # - RULE-SET,AmazonIp,节点选择
-  # - RULE-SET,Apple,苹果服务
+- RULE-SET,Amazon,国外网站
+- RULE-SET,AmazonIp,国外网站
+- RULE-SET,Apple,苹果服务
   # 开发
-  # - RULE-SET,Developer,节点选择
+- RULE-SET,Developer,国外网站
   # 18
-  # - RULE-SET,EHGallery,节点选择
-  # - RULE-SET,Porn,节点选择
+- RULE-SET,EHGallery,国外网站
+- RULE-SET,Porn,国外网站
   # 国内
-- RULE-SET,ChinaCompanyIp,大陆节点
-- RULE-SET,ChinaDomain,大陆节点
-- RULE-SET,ChinaIp,大陆节点
+- RULE-SET,ChinaCompanyIp,大陆网站
+- RULE-SET,ChinaDomain,大陆网站
+- RULE-SET,ChinaIp,大陆网站
   # GFW
-  # - RULE-SET,ProxyGFWlist,节点选择
+- RULE-SET,ProxyGFWlist,国外网站
   # 广告
 - RULE-SET,BanAD,广告拦截
 - RULE-SET,BanEasyList,广告拦截
@@ -784,3 +772,6 @@ rules:
 - RULE-SET,BanProgramAD,广告拦截
   # 必须
 - MATCH,漏网之鱼
+
+`;
+

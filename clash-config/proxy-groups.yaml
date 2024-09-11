@@ -1,10 +1,11 @@
-# DNLAB_Full.yaml 完整的rule对应groups配置
 proxy-groups:
   - name: 节点选择
     type: select
     proxies:
-      - 自动选择
+      - DIRECT
       - 手动切换
+      - 自动选择(国外)
+      - 自动选择(大陆)
       - 香港节点
       - 日本节点
       - 新加坡节点
@@ -12,16 +13,21 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 大陆节点
-      - DIRECT
   - name: 手动切换
     type: select
     use:
       - All
-  - name: 自动选择
+  - name: 自动选择(国外)
     type: url-test
     use:
-      - All
+      - AutoSelectNOCN # 不用All因为All包含CN节点
     url: http://www.gstatic.com/generate_204
+    interval: 300
+  - name: 自动选择(大陆)
+    type: url-test
+    use:
+      - AutoSelectCN
+    url: https://www.google.cn/generate_204
     interval: 300
   - name: 负载均衡
     type: load-balance
@@ -29,99 +35,94 @@ proxy-groups:
       - All
 
   # 内容分类, 规则集映射到此
+  - name: 大陆网站
+    type: select
+    proxies:
+      - DIRECT
+      - 大陆节点
+      - 节点选择
+  - name: 国外网站
+    type: select
+    proxies:
+      - 节点选择
+      - DIRECT
   - name: 学术网站
     type: select
     proxies:
       - DIRECT
       - 学术节点
       - 节点选择
-      - 自动选择
-      - 手动切换
   - name: 电报消息
     type: select
     proxies:
       - 节点选择
-      - 自动选择
-      - 手动切换
+      - DIRECT
       - 香港节点
       - 日本节点
       - 新加坡节点
       - 台湾节点
       - 美国节点
       - 韩国节点
-      - DIRECT
   - name: 油管视频
     type: select
     proxies:
       - 节点选择
-      - 自动选择
-      - 手动切换
+      - DIRECT
       - 香港节点
       - 日本节点
       - 新加坡节点
       - 台湾节点
       - 美国节点
       - 韩国节点
-      - DIRECT
   - name: 奈飞视频
     type: select
     proxies:
       - 解锁节点
       - 节点选择
-      - 自动选择
-      - 手动切换
+      - DIRECT
       - 香港节点
       - 日本节点
       - 新加坡节点
       - 台湾节点
       - 美国节点
       - 韩国节点
-      - DIRECT
   - name: 巴哈姆特
     type: select
     proxies:
       - 台湾节点
       - 节点选择
-      - 自动选择
-      - 手动切换
       - DIRECT
   - name: 哔哩哔哩
     type: select
     proxies:
-      - 全球直连
+      - DIRECT
+      - 节点选择
+      - 大陆节点
       - 台湾节点
       - 香港节点
-      - 大陆节点
   - name: 国外媒体
     type: select
     proxies:
-      - 解锁节点
       - 节点选择
-      - 自动选择
-      - 手动切换
+      - 解锁节点
+      - DIRECT
       - 香港节点
       - 日本节点
       - 新加坡节点
       - 台湾节点
       - 美国节点
       - 韩国节点
-      - DIRECT
   - name: 国内媒体
     type: select
     proxies:
       - DIRECT
-      - 手动切换
-      - 香港节点
-      - 台湾节点
-      - 日本节点
-      - 新加坡节点
       - 大陆节点
+      - 节点选择
   - name: 谷歌FCM
     type: select
     proxies:
       - DIRECT
       - 节点选择
-      - 手动切换
       - 香港节点
       - 台湾节点
       - 日本节点
@@ -133,7 +134,6 @@ proxy-groups:
     proxies:
       - DIRECT
       - 节点选择
-      - 手动切换
       - 香港节点
       - 台湾节点
       - 日本节点
@@ -145,7 +145,6 @@ proxy-groups:
     proxies:
       - DIRECT
       - 节点选择
-      - 手动切换
       - 香港节点
       - 台湾节点
       - 日本节点
@@ -157,7 +156,6 @@ proxy-groups:
     proxies:
       - DIRECT
       - 节点选择
-      - 手动切换
       - 香港节点
       - 台湾节点
       - 日本节点
@@ -169,21 +167,19 @@ proxy-groups:
     proxies:
       - DIRECT
       - 节点选择
-      - 手动切换
+      - 大陆节点
       - 香港节点
       - 台湾节点
       - 日本节点
       - 新加坡节点
       - 美国节点
       - 韩国节点
-      - 大陆节点
   - name: 网易云音乐
-    # 不知道怎么实现ACL4SSR的自动选择`(网易|音乐|解锁|Music|NetEase), 应该是要新建一个music providers
+    # 不知道怎么实现ACL4SSR的自动选择(网易|音乐|解锁|Music|NetEase), 应该是要新建一个music providers
     type: select
     proxies:
       - DIRECT
       - 节点选择
-      - 手动切换
       - 香港节点
       - 台湾节点
       - 日本节点
@@ -196,8 +192,6 @@ proxy-groups:
     proxies:
       - DIRECT
       - 节点选择
-      - 自动选择
-      - 手动切换
   - name: 广告拦截
     type: select
     proxies:
@@ -213,8 +207,6 @@ proxy-groups:
     proxies:
       - DIRECT
       - 节点选择
-      - 自动选择
-      - 手动切换
 
   # 国家与地区分类, proxy-providers映射到此, 采用url-test, 这个分类上大概自动选择比较好
   # 2023.10.08 我现在觉得select比较好
@@ -256,69 +248,3 @@ proxy-groups:
     type: select
     use:
       - CERNET
-
-rules:
-  # 白名单
-  - RULE-SET,UnBan,DIRECT
-  # 本地
-  - RULE-SET,Download,DIRECT
-  - RULE-SET,LocalAreaNetwork,DIRECT
-  # 学术
-  - RULE-SET,SitesOnlyInSchool,学术网站
-  - RULE-SET,Scholar,学术网站
-  # 其他
-  - RULE-SET,DnlabChina,大陆节点
-  - RULE-SET,DnlabAbroad,DIRECT
-  # - RULE-SET,HomeBroadband,解锁节点
-  # - RULE-SET,RequestLimit,负载均衡
-  # - RULE-SET,Adobe,节点选择
-  # - RULE-SET,Google,节点选择
-  - RULE-SET,GoogleCN,大陆节点
-  - RULE-SET,GoogleFCM,谷歌FCM
-  - RULE-SET,Microsoft,微软服务
-  - RULE-SET,OneDrive,微软云盘
-  - RULE-SET,Telegram,电报消息
-  # 游戏
-  - RULE-SET,Bahamut,巴哈姆特
-  - RULE-SET,Blizzard,游戏平台
-  - RULE-SET,Epic,游戏平台
-  - RULE-SET,Steam,游戏平台
-  - RULE-SET,SteamCN,大陆节点
-  - RULE-SET,Xbox,游戏平台
-  # 媒体
-  - RULE-SET,NetEaseMusic,网易云音乐
-  - RULE-SET,Bilibili,哔哩哔哩
-    # bilibili港澳台暂时也用哔哩哔哩
-  - RULE-SET,BilibiliHMT,哔哩哔哩
-  - RULE-SET,Netflix,奈飞视频
-  - RULE-SET,AbemaTV,国外媒体
-  - RULE-SET,DisneyPlus,国外媒体
-  - RULE-SET,HBO,国外媒体
-  - RULE-SET,Sony,国外媒体
-  - RULE-SET,Spotify,国外媒体
-  - RULE-SET,YouTube,油管视频
-  - RULE-SET,ChinaMedia,国内媒体
-  - RULE-SET,ProxyMedia,国外媒体
-  # 购物
-  # - RULE-SET,Amazon,节点选择
-  # - RULE-SET,AmazonIp,节点选择
-  # - RULE-SET,Apple,苹果服务
-  # 开发
-  # - RULE-SET,Developer,节点选择
-  # 18
-  # - RULE-SET,EHGallery,节点选择
-  # - RULE-SET,Porn,节点选择
-  # 国内
-  - RULE-SET,ChinaCompanyIp,大陆节点
-  - RULE-SET,ChinaDomain,大陆节点
-  - RULE-SET,ChinaIp,大陆节点
-  # GFW
-  # - RULE-SET,ProxyGFWlist,节点选择
-  # 广告
-  - RULE-SET,BanAD,广告拦截
-  - RULE-SET,BanEasyList,广告拦截
-  - RULE-SET,BanEasyListChina,广告拦截
-  - RULE-SET,BanEasyPrivacy,广告拦截
-  - RULE-SET,BanProgramAD,广告拦截
-  # 必须
-  - MATCH,漏网之鱼

@@ -1,0 +1,66 @@
+proxy-providers:
+  # All; 所有
+  All: &proxy-providers-template
+    type: http
+    url: # your proxy provider url
+    interval: 3600
+    health-check:
+      enable: true
+      interval: 1800
+      lazy: false
+      url: http://www.gstatic.com/generate_204
+    path: ./proxy-providers/All.yaml
+
+  # 自动选择，暂时用不上，因为clash的正则用不了
+  AutoSelectNOCN:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    # go的正则表达式，去掉含CN的节点，包含其他所有节点
+    exclude-filter: CN
+
+  AutoSelectCN:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|none|CN|China # None|none|用于匹配不存在节点, 防止clash报错
+
+  # Countries or Regions; 国家或地区
+  HK:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|none|港|HK|Hong Kong
+  JP:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|none|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan
+  SG:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|none|新加坡|坡|狮城|SG|Singapore
+  TW:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|none|台|新北|彰化|TW|Taiwan
+  US:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|none|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States
+  KR:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|none|KR|Korea|KOR|首尔|韩|韓
+  CN:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|none|CN|China
+
+  # Streaming Media; 流媒体
+  Unlock:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|none|🔓|Unlock|unlock|UNLOCK|NF|奈飞|解锁|Netflix|NETFLIX|Media|Hulu|HBO|Disney|Prime
+
+  # Scholar; 学术
+  CERNET:
+    <<: *proxy-providers-template
+    path: ./proxy-providers/All.yaml
+    filter: None|none|PKU|THU|SJTU|USTC

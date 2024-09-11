@@ -1,0 +1,309 @@
+rule-providers:
+  # raw.githubusercontent.com mirror: raw.projectk.org
+  AbemaTV:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/AbemaTV.yaml"
+    path: ./rule-providers/ACL4SSR/AbemaTV.yaml
+    interval: 3600
+
+  Adobe:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Adobe.yaml"
+    path: ./rule-providers/ACL4SSR/Adobe.yaml
+    interval: 3600
+
+  Amazon:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Amazon.yaml"
+    path: ./rule-providers/ACL4SSR/Amazon.yaml
+    interval: 3600
+
+  AmazonIp:
+    type: http
+    behavior: ipcidr
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/AmazonIp.yaml"
+    path: ./rule-providers/ACL4SSR/AmazonIp.yaml
+    interval: 3600
+
+  Apple:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Apple.yaml"
+    path: ./rule-providers/ACL4SSR/Apple.yaml
+    interval: 3600
+
+  Bahamut:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Bahamut.yaml"
+    path: ./rule-providers/ACL4SSR/Bahamut.yaml
+    interval: 3600
+
+  Bilibili:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Bilibili.yaml"
+    path: ./rule-providers/ACL4SSR/Bilibili.yaml
+    interval: 3600
+
+  BilibiliHMT:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/BilibiliHMT.yaml"
+    path: ./rule-providers/ACL4SSR/BilibiliHMT.yaml
+    interval: 3600
+
+  Blizzard:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Blizzard.yaml"
+    path: ./rule-providers/ACL4SSR/Blizzard.yaml
+    interval: 3600
+
+  Developer:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Developer.yaml"
+    path: ./rule-providers/ACL4SSR/Developer.yaml
+    interval: 3600
+
+  DisneyPlus:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/DisneyPlus.yaml"
+    path: ./rule-providers/ACL4SSR/DisneyPlus.yaml
+    interval: 3600
+
+  EHGallery:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/EHGallery.yaml"
+    path: ./rule-providers/ACL4SSR/EHGallery.yaml
+    interval: 3600
+
+  Epic:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Epic.yaml"
+    path: ./rule-providers/ACL4SSR/Epic.yaml
+    interval: 3600
+
+  Google:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Google.yaml"
+    path: ./rule-providers/ACL4SSR/Google.yaml
+    interval: 3600
+
+  GoogleCN:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/GoogleCN.yaml"
+    path: ./rule-providers/ACL4SSR/GoogleCN.yaml
+    interval: 3600
+
+  GoogleFCM:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/GoogleFCM.yaml"
+    path: ./rule-providers/ACL4SSR/GoogleFCM.yaml
+    interval: 3600
+
+  HBO:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/HBO.yaml"
+    path: ./rule-providers/ACL4SSR/HBO.yaml
+    interval: 3600
+
+  Microsoft:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Microsoft.yaml"
+    path: ./rule-providers/ACL4SSR/Microsoft.yaml
+    interval: 3600
+
+  NetEaseMusic:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/NetEaseMusic.yaml"
+    path: ./rule-providers/ACL4SSR/NetEaseMusic.yaml
+    interval: 3600
+
+  Netflix:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Netflix.yaml"
+    path: ./rule-providers/ACL4SSR/Netflix.yaml
+    interval: 3600
+
+  OneDrive:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/OneDrive.yaml"
+    path: ./rule-providers/ACL4SSR/OneDrive.yaml
+    interval: 3600
+
+  Porn:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Porn.yaml"
+    path: ./rule-providers/ACL4SSR/Porn.yaml
+    interval: 3600
+
+  Scholar:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Scholar.yaml"
+    path: ./rule-providers/ACL4SSR/Scholar.yaml
+    interval: 3600
+
+  Sony:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Sony.yaml"
+    path: ./rule-providers/ACL4SSR/Sony.yaml
+    interval: 3600
+
+  Spotify:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Spotify.yaml"
+    path: ./rule-providers/ACL4SSR/Spotify.yaml
+    interval: 3600
+
+  Steam:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Steam.yaml"
+    path: ./rule-providers/ACL4SSR/Steam.yaml
+    interval: 3600
+
+  SteamCN:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/SteamCN.yaml"
+    path: ./rule-providers/ACL4SSR/SteamCN.yaml
+    interval: 3600
+
+  Telegram:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Telegram.yaml"
+    path: ./rule-providers/ACL4SSR/Telegram.yaml
+    interval: 3600
+
+  Xbox:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Xbox.yaml"
+    path: ./rule-providers/ACL4SSR/Xbox.yaml
+    interval: 3600
+
+  YouTube:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/YouTube.yaml"
+    path: ./rule-providers/ACL4SSR/YouTube.yaml
+    interval: 3600
+
+  BanAD:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml"
+    path: ./rule-providers/ACL4SSR/BanAD.yaml
+    interval: 3600
+
+  BanEasyList:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/BanEasyList.yaml"
+    path: ./rule-providers/ACL4SSR/BanEasyList.yaml
+    interval: 3600
+
+  BanEasyListChina:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/BanEasyListChina.yaml"
+    path: ./rule-providers/ACL4SSR/BanEasyListChina.yaml
+    interval: 3600
+
+  BanEasyPrivacy:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/BanEasyPrivacy.yaml"
+    path: ./rule-providers/ACL4SSR/BanEasyPrivacy.yaml
+    interval: 3600
+
+  BanProgramAD:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/BanProgramAD.yaml"
+    path: ./rule-providers/ACL4SSR/BanProgramAD.yaml
+    interval: 3600
+
+  ChinaCompanyIp:
+    type: http
+    behavior: ipcidr
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaCompanyIp.yaml"
+    path: ./rule-providers/ACL4SSR/ChinaCompanyIp.yaml
+    interval: 3600
+
+  ChinaDomain:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaDomain.yaml"
+    path: ./rule-providers/ACL4SSR/ChinaDomain.yaml
+    interval: 3600
+
+  ChinaIp:
+    type: http
+    behavior: ipcidr
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaIp.yaml"
+    path: ./rule-providers/ACL4SSR/ChinaIp.yaml
+    interval: 3600
+
+  ChinaMedia:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaMedia.yaml"
+    path: ./rule-providers/ACL4SSR/ChinaMedia.yaml
+    interval: 3600
+
+  Download:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/Download.yaml"
+    path: ./rule-providers/ACL4SSR/Download.yaml
+    interval: 3600
+
+  LocalAreaNetwork:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/LocalAreaNetwork.yaml"
+    path: ./rule-providers/ACL4SSR/LocalAreaNetwork.yaml
+    interval: 3600
+
+  ProxyGFWlist:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml"
+    path: ./rule-providers/ACL4SSR/ProxyGFWlist.yaml
+    interval: 3600
+
+  ProxyMedia:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyMedia.yaml"
+    path: ./rule-providers/ACL4SSR/ProxyMedia.yaml
+    interval: 3600
+
+  UnBan:
+    type: http
+    behavior: classical
+    url: "https://raw.projectk.org/ACL4SSR/ACL4SSR/master/Clash/Providers/UnBan.yaml"
+    path: ./rule-providers/ACL4SSR/UnBan.yaml
+    interval: 3600
