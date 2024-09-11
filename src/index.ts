@@ -55,8 +55,9 @@ export default {
         let config = parse(config_string);
         if (subscription_url) {
             config["proxy-providers"]["All"]["url"] = url.origin + "/?mode=subconverter&subscription=" + encodeURIComponent(subscription_url + "&flag=clash");
+            return new Response(stringify(config));
         }
 
-        return new Response(stringify(config));
+        return new Response(null, { status: 400 });
     },
 };
